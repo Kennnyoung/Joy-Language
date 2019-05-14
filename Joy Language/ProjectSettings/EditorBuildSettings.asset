@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/User Login.unity
+    guid: 56c134abb4abcbe468dfa18ace0274f8
+  - enabled: 1
+    path: Assets/Scenes/Word Learning Scene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

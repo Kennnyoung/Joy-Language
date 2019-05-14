@@ -4,6 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 //probably using the following json format
 //{
@@ -14,7 +15,7 @@ using Newtonsoft.Json;
 //    'userName2':{
 //        'password':'pwd',
 //        'email':'mail'
-//    },
+//    }
 //}
 
 
@@ -27,40 +28,67 @@ public class UserInfo {
 public class UserLogin : MonoBehaviour
 {
     [SerializeField] Button login;
+    [SerializeField] InputField userName;
+    [SerializeField] InputField password;
 
     UserInfo myObject = new UserInfo();
     UserInfo myObject2 = new UserInfo();
     
 
     // Start is called before the first frame update
-    void Start()
-    {
-        //print("test..");
-        //myObject.userName = "test";
-        //myObject.password = "test";
-        //myObject.email = "test@mail";
-        //string json = JsonUtility.ToJson(myObject);
-        //print(json);
-        //File.WriteAllText(@"./Assets/Scripts/userInfo.json", json);
+    void Start(){
         string input = File.ReadAllText(@"./Assets/Scripts/userInfo.json");
         //print(input);
         //myObject2 =  JsonUtility.FromJson<UserInfo>(input);
         //print(myObject2.userName);
 
+        // add the login listener
+        login.onClick.AddListener(buttonClick);
+
         JsonTextReader reader = new JsonTextReader(new StringReader(input));
+        List<UserInfo> allUser;
+        reader.Read();
         while (reader.Read()) {
-            if (reader.Value != null) {
-                print("key: " + reader.TokenType + " Value: " + reader.Value);
-            }
-            else {
-                print("Key: " + reader.TokenType);
-            }
+            if (reader.Value == null) break;
+            UserInfo temp = new UserInfo();
+            // first is user name
+            print("user name is " + reader.Value);
+            temp.userName = reader.Value.ToString();
+
+            // jump to next
+            reader.Read();
+            reader.Read();
+            reader.Read();
+            // this is user email
+            print("user password is " + reader.Value);
+            temp.password = reader.Value.ToString();
+
+            // jump to next
+            reader.Read();
+            reader.Read();
+            print("user email is " + reader.Value);
+            temp.email = reader.Value.ToString();
+
+            // out the obj
+            reader.Read();
+            print(temp.email);
         }
     }
 
+    void buttonClick() {
+        print(userName.text);
+        print(password.text);
+        if(userName.text == "test" && password.text == "1111") {
+            loginSuccess();
+        }
+    }
+
+    void loginSuccess() {
+        SceneManager.LoadScene(1);
+    }
+
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update(){
+
     }
 }

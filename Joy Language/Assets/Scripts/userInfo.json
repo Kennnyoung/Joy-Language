@@ -1,1 +1,10 @@
-{"userName":"test","password":"test","email":"test@mail"}
+{
+    'userName':{
+        'password':'pwd',
+        'email':'mail'
+    },
+    'userName2':{
+        'password':'pwd',
+        'email':'mail'
+    }
+}
