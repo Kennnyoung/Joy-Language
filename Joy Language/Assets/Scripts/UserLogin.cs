@@ -33,7 +33,7 @@ public class UserLogin : MonoBehaviour
 
     UserInfo myObject = new UserInfo();
     UserInfo myObject2 = new UserInfo();
-    
+    List<UserInfo> allUser = new List<UserInfo>();
 
     // Start is called before the first frame update
     void Start(){
@@ -46,7 +46,7 @@ public class UserLogin : MonoBehaviour
         login.onClick.AddListener(buttonClick);
 
         JsonTextReader reader = new JsonTextReader(new StringReader(input));
-        List<UserInfo> allUser;
+        
         reader.Read();
         while (reader.Read()) {
             if (reader.Value == null) break;
@@ -71,15 +71,18 @@ public class UserLogin : MonoBehaviour
 
             // out the obj
             reader.Read();
-            print(temp.email);
+            allUser.Add(temp);
         }
     }
 
     void buttonClick() {
         print(userName.text);
         print(password.text);
-        if(userName.text == "test" && password.text == "1111") {
-            loginSuccess();
+        print(allUser.Count);
+        for(int i = 0; i < allUser.Count; i++) {
+            if (userName.text == allUser[i].userName && password.text == allUser[i].password) {
+                loginSuccess();
+            }
         }
     }
 
