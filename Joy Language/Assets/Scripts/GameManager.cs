@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
 
     public void AnswerCorrect()
     {
-        print("wtf");
         Reset();
     }
 
