@@ -20,6 +20,7 @@ public class FollowTouch : MonoBehaviour
         {
             // get mouse position in screen space
             // (if touch, gets average of all touches)
+            GetComponent<Animator>().enabled = false;
             Vector3 screenPos = Input.mousePosition;
             // set a distance from the camera
             //screenPos.z = 500.0f;
@@ -54,6 +55,10 @@ public class FollowTouch : MonoBehaviour
             }
             // apply new position
             transform.position = newPos;
+        }
+        else
+        {
+            GetComponent<Animator>().enabled = true; ;
         }
         
     }
