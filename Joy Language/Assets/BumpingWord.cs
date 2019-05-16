@@ -5,6 +5,7 @@ using UnityEngine;
 public class BumpingWord : MonoBehaviour
 {
     // Start is called before the first frame update
+    public GameManager GM;
     void Start()
     {
         
@@ -16,8 +17,20 @@ public class BumpingWord : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private IEnumerator OnCollisionEnter2D(Collision2D collision)
     {
-        print("/???");
+        GM.DisableCollider();
+        yield return new WaitForSeconds(0.5f);
+        GameObject choice = collision.gameObject;
+        if (choice.tag == "Correct Answer")
+        {
+            print("?>??");
+            GM.AnswerCorrect();
+        }
+        else
+        {
+            print("!!!");
+            GM.AnswerWrong();
+        }
     }
 }

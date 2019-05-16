@@ -18,11 +18,39 @@ public class GameManager : MonoBehaviour
         ChoiceOne.text = "layers";
         ChoiceTwo.text = "steps";
         ChoiceThree.text = "levels";
+        ChoiceOne.tag = "Correct Answer";
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+
+    public void AnswerCorrect()
+    {
+        print("wtf");
+        Reset();
+    }
+
+    public void AnswerWrong()
+    {
+        Reset();
+    }
+
+
+    public void DisableCollider()
+    {
+        ChoiceOne.GetComponent<Collider2D>().enabled = (ChoiceOne.tag == "Correct Answer") ? true : false;
+        ChoiceTwo.GetComponent<Collider2D>().enabled = (ChoiceTwo.tag == "Correct Answer") ? true : false;
+        ChoiceThree.GetComponent<Collider2D>().enabled = (ChoiceThree.tag == "Correct Answer") ? true : false;
+    }
+
+    public void Reset()
+    {
+        ChoiceOne.enabled = false;
+        ChoiceTwo.enabled = false;
+        ChoiceThree.enabled = false;
     }
 }
