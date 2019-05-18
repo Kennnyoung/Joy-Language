@@ -2828,6 +2828,7 @@ MonoBehaviour:
   choice2: {fileID: 989454891}
   choice3: {fileID: 420377368}
   choice4: {fileID: 1351743204}
+  englishShow: {fileID: 886688261}
   checkAns: {fileID: 1196040309}
 --- !u!1 &315659534
 GameObject:
