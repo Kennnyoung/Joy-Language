@@ -32,7 +32,7 @@ public class GetBlankPosition : MonoBehaviour
                 textGen.verts[indexOfTextQuad + 3].position) / 4f;
 
             print(avgPos);
-            PrintWorldPos(avgPos);
+            PrintWorldPos(avgPos / canvas.scaleFactor);
         }
         else
         {
