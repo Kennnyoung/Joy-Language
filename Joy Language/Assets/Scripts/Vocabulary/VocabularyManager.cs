@@ -9,7 +9,7 @@ public class VocabularyManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vSheet = new VocabularySheet("Assets/Scripts/Vocabulary/word_test.json");
+        vSheet = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
     }
 
     // Generate choice for the user.
@@ -41,8 +41,14 @@ public class VocabularyManager : MonoBehaviour
         if (Input.GetKey(KeyCode.T))
         {
             (List<string>, List<string>) test = popQuestion('E');
-            Debug.Log(test.Item1);
-            Debug.Log(test.Item2);
+            foreach (string meaning in test.Item1)
+            {
+                Debug.Log(meaning);
+            }
+            foreach (string choice in test.Item2)
+            {
+                Debug.Log(choice);
+            }
         }
     }
 }
