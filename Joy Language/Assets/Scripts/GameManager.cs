@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
                 button.tag = "Correct Answer";
             }
             //set choice text
-            button.Find("Text").GetComponent<Text>().text = answers[i];
+            button.Find("Text").GetComponent<TextMeshProUGUI>().text = answers[i];
             
             //random arrange buttons
             int n = Random.Range(0, targets.Count);
