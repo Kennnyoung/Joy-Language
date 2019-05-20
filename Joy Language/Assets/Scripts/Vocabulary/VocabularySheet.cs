@@ -89,7 +89,7 @@ public class VocabularySheet
     }
 
     // Search for definition a given vocabulary.
-    public List<Vocabulary> findVocabulary(string v)
+    public List<Vocabulary> FindVocabulary(string v)
     {
         if (EasySheet.ContainsKey(v))
         {
