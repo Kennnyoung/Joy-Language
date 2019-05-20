@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnterCanvas : MonoBehaviour
 {
+    public float duration;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,6 @@ public class EnterCanvas : MonoBehaviour
 
     void SetAim(Vector3 tempAim)
     {
-        iTween.MoveTo(gameObject, tempAim,1f);
+        iTween.MoveTo(gameObject, iTween.Hash("position", tempAim, "time", duration, "easetype", "easeInOutBack"));
     }
 }
