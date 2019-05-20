@@ -16,7 +16,10 @@ public class BumpingWord : MonoBehaviour
     {
         
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        print("!!!!");
+    }
     //private IEnumerator OnCollisionEnter2D(Collision2D collision)
     //{
     //    GM.DisableCollider();

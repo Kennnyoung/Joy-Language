@@ -7,9 +7,9 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI Question;
-    public TextMeshProUGUI ChoiceOne;
-    public TextMeshProUGUI ChoiceTwo;
-    public TextMeshProUGUI ChoiceThree;
+    //public TextMeshProUGUI ChoiceOne;
+    //public TextMeshProUGUI ChoiceTwo;
+    //public TextMeshProUGUI ChoiceThree;
 
 
     GameObject button;
@@ -20,10 +20,14 @@ public class GameManager : MonoBehaviour
     public string[] answers;
     public Transform[] choicePositions;
 
+    List<Transform> buttons;
     List<Transform> targets;
+
+    bool answerCheck;
     void Awake()
     {
         targets = new List<Transform>();
+        buttons = new List<Transform>();
         GenerateChoices();
     }
     // Start is called before the first frame update
@@ -39,7 +43,7 @@ public class GameManager : MonoBehaviour
     //// Update is called once per frame
     //void Update()
     //{
-        
+
     //}
 
 
@@ -67,7 +71,7 @@ public class GameManager : MonoBehaviour
     //    ChoiceTwo.enabled = false;
     //    ChoiceThree.enabled = false;
     //}
-    
+
     void GenerateChoices()
     {
         // get target positions
@@ -79,6 +83,7 @@ public class GameManager : MonoBehaviour
         {
             //generate a button
             Transform button = Instantiate(choice, spawnPosition.position, Quaternion.identity, canvas);
+            buttons.Add(button);
             button.name = "choice" + (i + 1);
             //the first element in the array is the correct answer
             if(i == 0)
@@ -92,6 +97,17 @@ public class GameManager : MonoBehaviour
             int n = Random.Range(0, targets.Count);
             button.SendMessage("SetAim", targets[n].position);
             targets.RemoveAt(n);
+        }
+    }
+
+    void TestChoice(bool tempTest)
+    {
+        answerCheck = tempTest;
+        for (int i=0; i < buttons.Count; i++)
+        {
+            Transform button = buttons[i];
+            if (button.tag != "Current Answer")
+                Destroy(button.gameObject);
         }
     }
 }
