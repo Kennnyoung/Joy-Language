@@ -17,18 +17,18 @@ public class BumpingWord : MonoBehaviour
         
     }
 
-    private IEnumerator OnCollisionEnter2D(Collision2D collision)
-    {
-        GM.DisableCollider();
-        yield return new WaitForSeconds(0.5f);
-        GameObject choice = collision.gameObject;
-        if (choice.tag == "Correct Answer")
-        {
-            GM.AnswerCorrect();
-        }
-        else
-        {
-            GM.AnswerWrong();
-        }
-    }
+    //private IEnumerator OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    GM.DisableCollider();
+    //    yield return new WaitForSeconds(0.5f);
+    //    GameObject choice = collision.gameObject;
+    //    if (choice.tag == "Correct Answer")
+    //    {
+    //        GM.AnswerCorrect();
+    //    }
+    //    else
+    //    {
+    //        GM.AnswerWrong();
+    //    }
+    //}
 }
