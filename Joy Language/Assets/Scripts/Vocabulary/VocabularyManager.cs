@@ -13,7 +13,7 @@ public class VocabularyManager : MonoBehaviour
     }
 
     // Generate choice for the user.
-    public (List<string>, List<string>) popQuestion(char difficulty)
+    public (List<string>, List<string>) PopQuestion(char difficulty)
     {
         List<Vocabulary> vLst = vSheet.GetVList(difficulty);
 
