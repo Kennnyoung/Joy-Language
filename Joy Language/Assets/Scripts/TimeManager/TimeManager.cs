@@ -14,4 +14,10 @@ public class TimeManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    // For test purpose.
+    public void Start()
+    {
+        SlowDown();
+    }
 }
