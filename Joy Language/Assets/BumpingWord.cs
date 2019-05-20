@@ -24,12 +24,10 @@ public class BumpingWord : MonoBehaviour
         GameObject choice = collision.gameObject;
         if (choice.tag == "Correct Answer")
         {
-            print("?>??");
             GM.AnswerCorrect();
         }
         else
         {
-            print("!!!");
             GM.AnswerWrong();
         }
     }

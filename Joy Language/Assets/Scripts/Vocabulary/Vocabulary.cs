@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Vocabulary
 {
@@ -15,5 +16,9 @@ public class Vocabulary
         Pos = pos;
         Meaning = meaning;
         Syllable = syllable;
+    }
+
+    public void printV() {
+        Debug.Log(Id + " " + Spelling + " " + Pos + " " + Meaning + " " + Syllable);
     }
 }

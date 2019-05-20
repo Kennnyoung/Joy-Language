@@ -1,0 +1,219 @@
+[
+  {
+    "id": 1,
+    "spelling": "alter",
+    "pos": "v.",
+    "meaning": "改变，改动，变更",
+    "syllable": "al,ter"
+  },
+  {
+    "id": 2,
+    "spelling": "burst",
+    "pos": "vi.",
+    "meaning": "突然发生，爆裂",
+    "syllable": "burst"
+  },
+  {
+    "id": 2,
+    "spelling": "burst",
+    "pos": "n.",
+    "meaning": "突然发生，爆裂",
+    "syllable": "burst"
+  },
+  {
+    "id": 3,
+    "spelling": "dispose",
+    "pos": "vi.",
+    "meaning": "除掉;处置;解决;处理(of)",
+    "syllable": "dis,pose"
+  },
+  {
+    "id": 4,
+    "spelling": "blast",
+    "pos": "n.",
+    "meaning": "爆炸;气流",
+    "syllable": "blast"
+  },
+  {
+    "id": 4,
+    "spelling": "blast",
+    "pos": "vi.",
+    "meaning": "炸，炸掉",
+    "syllable": "blast"
+  },
+  {
+    "id": 5,
+    "spelling": "consume",
+    "pos": "v.",
+    "meaning": "消耗，耗尽",
+    "syllable": "con,sume"
+  },
+  {
+    "id": 6,
+    "spelling": "split",
+    "pos": "v.",
+    "meaning": "劈开;割裂;分裂",
+    "syllable": "split"
+  },
+  {
+    "id": 6,
+    "spelling": "split",
+    "pos": "adj.",
+    "meaning": "裂开的",
+    "syllable": "split"
+  },
+  {
+    "id": 7,
+    "spelling": "spit",
+    "pos": "v.",
+    "meaning": "吐(唾液等);唾弃",
+    "syllable": "spit"
+  },
+  {
+    "id": 8,
+    "spelling": "spill",
+    "pos": "v.",
+    "meaning": "溢出，溅出，倒出",
+    "syllable": "spill"
+  },
+  {
+    "id": 9,
+    "spelling": "slip",
+    "pos": "v.",
+    "meaning": "滑动，滑落;忽略",
+    "syllable": "slip"
+  },
+  {
+    "id": 10,
+    "spelling": "slide",
+    "pos": "v.",
+    "meaning": "滑动，滑落",
+    "syllable": "slide"
+  },
+  {
+    "id": 10,
+    "spelling": "slide",
+    "pos": "n.",
+    "meaning": "滑动;滑面;幻灯片",
+    "syllable": "slide"
+  },
+  {
+    "id": 11,
+    "spelling": "bacteria",
+    "pos": "n.",
+    "meaning": "细菌",
+    "syllable": "bac,te,ri,a"
+  },
+  {
+    "id": 12,
+    "spelling": "breed",
+    "pos": "n.",
+    "meaning": "种，品种",
+    "syllable": "breed"
+  },
+  {
+    "id": 12,
+    "spelling": "breed",
+    "pos": "v.",
+    "meaning": "繁殖，产仔",
+    "syllable": "breed"
+  },
+  {
+    "id": 13,
+    "spelling": "budget",
+    "pos": "n.",
+    "meaning": "预算",
+    "syllable": "budg,et"
+  },
+  {
+    "id": 13,
+    "spelling": "budget",
+    "pos": "v.",
+    "meaning": "编预算，作安排",
+    "syllable": "budg,et"
+  },
+  {
+    "id": 14,
+    "spelling": "candidate",
+    "pos": "n.",
+    "meaning": "候选人",
+    "syllable": "can,di,date"
+  },
+  {
+    "id": 15,
+    "spelling": "campus",
+    "pos": "n.",
+    "meaning": "校园",
+    "syllable": "cam,pus"
+  },
+  {
+    "id": 16,
+    "spelling": "liberal",
+    "pos": "adj.",
+    "meaning": "慷慨的;丰富的;自由的",
+    "syllable": "lib,er,al"
+  },
+  {
+    "id": 17,
+    "spelling": "transform",
+    "pos": "v.",
+    "meaning": "转变，变革;变换",
+    "syllable": "trans,form"
+  },
+  {
+    "id": 18,
+    "spelling": "transmit",
+    "pos": "v.",
+    "meaning": "传播，播送;传递",
+    "syllable": "trans,mit"
+  },
+  {
+    "id": 19,
+    "spelling": "transplant",
+    "pos": "v.",
+    "meaning": "移植",
+    "syllable": "trans,plant"
+  },
+  {
+    "id": 20,
+    "spelling": "transport",
+    "pos": "vt.",
+    "meaning": "运输，运送",
+    "syllable": "trans,port"
+  },
+  {
+    "id": 20,
+    "spelling": "transport",
+    "pos": "n.",
+    "meaning": "运输，运输工具",
+    "syllable": "trans,port"
+  },
+  {
+    "id": 21,
+    "spelling": "shift",
+    "pos": "v.",
+    "meaning": "转移;转动;转变",
+    "syllable": "shift"
+  },
+  {
+    "id": 22,
+    "spelling": "vary",
+    "pos": "v.",
+    "meaning": "变化，改变;使多样化",
+    "syllable": "var,y"
+  },
+  {
+    "id": 23,
+    "spelling": "vanish",
+    "pos": "vi.",
+    "meaning": "消灭，不见",
+    "syllable": "van,ish"
+  },
+  {
+    "id": 24,
+    "spelling": "swallow",
+    "pos": "v.",
+    "meaning": "吞下，咽下",
+    "syllable": "swal,low"
+  }
+]

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Text;
 using Newtonsoft.Json;
 using Random = System.Random;
 
@@ -16,8 +18,11 @@ public class VocabularySheet
         MediumSheet = new Dictionary<string, List<Vocabulary>>();
         HardSheet = new Dictionary<string, List<Vocabulary>>();
 
+        // read the target file as chinese char
+        string upStr = File.ReadAllText(fileLocation, Encoding.GetEncoding("gb2312"));
+
         // Read Json file of the vocabulary.
-        List<Vocabulary> vLst = JsonConvert.DeserializeObject<List<Vocabulary>>(fileLocation);
+        List<Vocabulary> vLst = JsonConvert.DeserializeObject<List<Vocabulary>>(upStr);
         foreach (Vocabulary v in vLst)
         {
             Dictionary<string, List<Vocabulary>> vSheet;
