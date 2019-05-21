@@ -40,7 +40,7 @@ public class VocabularyManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.T))
         {
-            (List<string>, List<string>) test = popQuestion('E');
+            (List<string>, List<string>) test = PopQuestion('E');
             foreach (string meaning in test.Item1)
             {
                 Debug.Log(meaning);
