@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.IO;
-using Newtonsoft.Json;
-using System.Text;
+using Random = System.Random;
+using UnityEngine.SceneManagement;
 
 public class EN2CN : MonoBehaviour
 {
@@ -21,37 +20,34 @@ public class EN2CN : MonoBehaviour
     void Start()
     {
 
-        //string input = File.ReadAllText("./Assets/Scripts/Vocabulary/word_test.json", Encoding.GetEncoding("gb2312"));
-        //List<Vocabulary> vLst = JsonConvert.DeserializeObject<List<Vocabulary>>(input);
-        //foreach (Vocabulary v in vLst){
-        //    v.printV();
-        //}
-
         VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
-        
 
-
+        //printAll(test);
 
         //VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocalbulary/word.json");
         List<Vocabulary> list = test.GetVList('M');
-        for(int i = 0; i < list.Count; i++) {
-           list[i].printV();
-        }
+        //for(int i = 0; i < list.Count; i++) {
+        //   list[i].printV();
+        //}
 
         choice1.onClick.AddListener(delegate { userPick(choice1); });
         choice2.onClick.AddListener(delegate { userPick(choice2); });
         choice3.onClick.AddListener(delegate { userPick(choice3); });
         choice4.onClick.AddListener(delegate { userPick(choice4); });
 
+        List<int> rlist = randomizedArr();
+        Random rand = new Random();
+        int correctIndex = rand.Next(3);
         // i will get the correct CN here
-        correct = list[0].Meaning;
-        // set the choice
-        choice1.GetComponentInChildren<Text>().text = list[0].Meaning;
-        choice2.GetComponentInChildren<Text>().text = list[1].Meaning;
-        choice3.GetComponentInChildren<Text>().text = list[2].Meaning;
-        choice4.GetComponentInChildren<Text>().text = list[3].Meaning;
+        correct = list[correctIndex].Meaning;
         // set the EN
-        englishShow.text = list[0].Spelling;
+        englishShow.text = list[correctIndex].Spelling;
+
+        // set the choice
+        choice1.GetComponentInChildren<Text>().text = list[rlist[0]].Meaning;
+        choice2.GetComponentInChildren<Text>().text = list[rlist[1]].Meaning;
+        choice3.GetComponentInChildren<Text>().text = list[rlist[2]].Meaning;
+        choice4.GetComponentInChildren<Text>().text = list[rlist[3]].Meaning;
     }
 
     void userPick(Button clicked) {
@@ -65,7 +61,8 @@ public class EN2CN : MonoBehaviour
             print("False!");
             checkAns.text = "False";
         }
-        Invoke("resetCheckAns", 2);
+        Invoke("resetCheckAns", 1);
+        //Invoke("reloadScene", 1);
     }
 
     void printAll(VocabularySheet test) {
@@ -88,9 +85,33 @@ public class EN2CN : MonoBehaviour
         }
     }
 
+    private List<int> randomizedArr() {
+        // init array
+        List<int> list = new List<int>();
+        for (int i = 0; i < 4; i++)  list.Add(i);
+
+        // start randing
+        Random rand = new Random();
+        for (int i = 0; i < 4; i++) {
+            int idx = rand.Next(3);
+            // switch
+            int temp = list[i];
+            list[i] = list[idx];
+            list[idx] = temp;
+        }
+
+        for (int i = 0; i < 4; i++) print(list[i]);
+        return list;
+    }
+
     // to reset the checkAns text box
     void resetCheckAns() {
         checkAns.text = "";
+    }
+
+    // only for testing
+    void reloadScene() {
+        SceneManager.LoadScene(1);
     }
 
     // Update is called once per frame
