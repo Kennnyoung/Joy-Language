@@ -6,7 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI Question;
+    public Text Question;
     //public TextMeshProUGUI ChoiceOne;
     //public TextMeshProUGUI ChoiceTwo;
     //public TextMeshProUGUI ChoiceThree;
