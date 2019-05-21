@@ -10,7 +10,7 @@ public class GetBlankPosition : MonoBehaviour
     public Canvas canvas;
     public float MoveUpScale;
 
-    void GetPos()
+    Vector3 GetPos()
     {
         string text = textComp.text;
 
@@ -18,7 +18,7 @@ public class GetBlankPosition : MonoBehaviour
         Vector3 avgPosOne = GetAvgPos(charIndex);
         charIndex = text.LastIndexOf('_') + 1;
         Vector3 avgPosTwo = GetAvgPos(charIndex);
-        GetWorldPos(0.5f * (avgPosOne + avgPosTwo) / canvas.scaleFactor);
+        return GetWorldPos(0.5f * (avgPosOne + avgPosTwo) / canvas.scaleFactor);
     }
 
     Vector3 GetAvgPos(int charIndex)
@@ -48,20 +48,21 @@ public class GetBlankPosition : MonoBehaviour
         }
     }
 
-    void GetWorldPos(Vector3 middleUnderScore)
+    Vector3 GetWorldPos(Vector3 middleUnderScore)
     {
         Vector3 worldPos = textComp.transform.TransformPoint(middleUnderScore);
         worldPos.y += 0.23f;
-        print(worldPos);
-        new GameObject("point").transform.position = worldPos;
-        Debug.DrawRay(worldPos, Vector3.up, Color.red, 50f);
+        
+        return(worldPos);
+        //new GameObject("point").transform.position = worldPos;
+        //Debug.DrawRay(worldPos, Vector3.up, Color.red, 50f);
     }
 
-    void OnGUI()
-    {
-        if (GUI.Button(new Rect(10, 10, 100, 80), "Test"))
-        {
-            GetPos();
-        }
-    }
+    //void OnGUI()
+    //{
+    //    if (GUI.Button(new Rect(10, 10, 100, 80), "Test"))
+    //    {
+    //        GetPos();
+    //    }
+    //}
 }
