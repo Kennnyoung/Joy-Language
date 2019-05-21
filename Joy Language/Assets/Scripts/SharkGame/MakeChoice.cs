@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class MakeChoice : MonoBehaviour
 {
-    public Transform text;
     GameObject gameManager;
     Button thisButton;
     void Awake()
@@ -30,7 +29,7 @@ public class MakeChoice : MonoBehaviour
         gameObject.GetComponent<Button>().enabled = false;
         //text.transform.parent = GameObject.Find("Star").transform;
         bool test = (gameObject.tag == "Correct Answer") ? true : false;
-        gameObject.tag = "Current Answer";
         gameManager.SendMessage("TestChoice", test);
+        gameObject.tag = "Current Answer";
     }
 }
