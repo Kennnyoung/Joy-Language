@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52202f288508a29469a070d4906efee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 3664778911311844926}
+  starTarget: {fileID: 2558472839937777948}
 --- !u!1 &6269981702523188708
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2558472839937777948}
   m_Layer: 5
-  m_Name: Target
+  m_Name: StarTarget
   m_TagString: Untagged
   m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

@@ -7,6 +7,8 @@ public class MakeChoice : MonoBehaviour
 {
     GameObject gameManager;
     Button thisButton;
+
+    public Transform starTarget;
     void Awake()
     {
         gameManager = GameObject.Find("GameManager");
@@ -18,18 +20,18 @@ public class MakeChoice : MonoBehaviour
         thisButton.onClick.AddListener(TestChoice);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void TestChoice()
     {
         gameObject.GetComponent<Button>().enabled = false;
-        //text.transform.parent = GameObject.Find("Star").transform;
         bool test = (gameObject.tag == "Correct Answer") ? true : false;
         gameManager.SendMessage("TestChoice", test);
         gameObject.tag = "Current Answer";
+        PlayAnimation();
+    }
+
+    void PlayAnimation()
+    {
+        GameObject star = GameObject.Find("Star");
+        star.SendMessage("MakeChoice", starTarget);
     }
 }

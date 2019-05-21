@@ -100,9 +100,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void TestChoice(bool tempTest)
+    IEnumerator TestChoice(bool tempTest)
     {
         answerCheck = tempTest;
+        yield return null;
         for (int i=0; i < buttons.Count; i++)
         {
             Transform button = buttons[i];
