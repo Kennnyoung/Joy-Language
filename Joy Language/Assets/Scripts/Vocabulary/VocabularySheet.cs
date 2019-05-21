@@ -65,7 +65,7 @@ public class VocabularySheet
         }
 
         List<Vocabulary> result = new List<Vocabulary>();
-        int size = 5;
+        int size = 4;
         int sheetSize = vSheet.Count;
         if (sheetSize <= size)
         {
@@ -76,21 +76,47 @@ public class VocabularySheet
         } else
         {
             List<List<Vocabulary>> vLst = vSheet.Values.ToList();
+            // random pick
             Random rand = new Random();
             int idx = 0;
-            while (size > 0)
-            {
-                if (rand.Next(sheetSize - idx) < size)
-                {
-                    result.AddRange(vLst[idx]);
-                    size--;
-                }
+            // not duplicate
+            List<int> picked = new List<int>();
 
+            while (size > 0){
+                // we need the CN is unique from the EN
+                idx = rand.Next(sheetSize);
+                while (!checkPicked(picked, idx)) {
+                    idx = rand.Next(sheetSize);
+                }
+                // add to the pick if unique
+                picked.Add(idx);
+
+
+                if (vLst[idx].Count == 1) {
+                    result.Add(vLst[idx][0]);
+                }
+                else {
+                    int idx2 = rand.Next(vLst[idx].Count);
+                    result.Add(vLst[idx][idx2]);
+                }
+                
+                // refresh the index
+                size--;
                 idx++;
             }
         }
 
         return result;
+    }
+
+    // because the required list is only 4 slots I decide use stupid method
+    private bool checkPicked(List<int> vList, int input) {
+        for (int i = 0; i < vList.Count; i++) {
+            if (vList[i] == input) {
+                return false;
+            }
+        }
+        return true;
     }
 
     // Search for definition a given vocabulary.
