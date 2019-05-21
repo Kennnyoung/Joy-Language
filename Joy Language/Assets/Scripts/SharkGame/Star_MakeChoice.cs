@@ -17,8 +17,11 @@ public class Star_MakeChoice : MonoBehaviour
     IEnumerator MakeChoice(Transform tempTarget)
     {
         iTween.MoveTo(gameObject, iTween.Hash("position", tempTarget.position, "time", moveDuration, "easetype", "easeInOutQuart"));
-
+        iTween.RotateBy(gameObject, iTween.Hash("z", 1, "time", moveDuration, "easeType", "easeInOutBack"));
+        starAnimator.SetBool("isMoving", true);
         yield return new WaitForSeconds(moveDuration);
         starAnimator.SetBool("isMakingChoice", true);
+        yield return null;
+        starAnimator.SetBool("isMoving", false);
     }
 }

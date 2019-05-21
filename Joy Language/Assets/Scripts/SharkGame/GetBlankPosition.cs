@@ -10,7 +10,7 @@ public class GetBlankPosition : MonoBehaviour
     public Canvas canvas;
     public float MoveUpScale;
 
-    Vector3 GetPos()
+    public Vector3 GetPos()
     {
         string text = textComp.text;
 

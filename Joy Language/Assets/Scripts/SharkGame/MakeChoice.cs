@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class MakeChoice : MonoBehaviour
 {
+    GetBlankPosition blankPosition;
     GameObject gameManager;
     Button thisButton;
 
     public Transform starTarget;
+    public float moveDuration;
     void Awake()
     {
         gameManager = GameObject.Find("GameManager");
         thisButton = gameObject.GetComponent<Button>();
+        blankPosition = GameObject.Find("Question").GetComponent<GetBlankPosition>();
     }
     // Start is called before the first frame update
     void Start()
@@ -33,5 +36,11 @@ public class MakeChoice : MonoBehaviour
     {
         GameObject star = GameObject.Find("Star");
         star.SendMessage("MakeChoice", starTarget);
+    }
+
+    void MoveToBlank()
+    {
+            Vector3 aim = blankPosition.GetPos();
+            iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutQuart"));   
     }
 }
