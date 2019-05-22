@@ -41,6 +41,6 @@ public class MakeChoice : MonoBehaviour
     void MoveToBlank()
     {
             Vector3 aim = blankPosition.GetPos();
-            iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutQuart"));   
+            iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutExpo"));   
     }
 }

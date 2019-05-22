@@ -51,7 +51,7 @@ public class GetBlankPosition : MonoBehaviour
     Vector3 GetWorldPos(Vector3 middleUnderScore)
     {
         Vector3 worldPos = textComp.transform.TransformPoint(middleUnderScore);
-        worldPos.y += 0.23f;
+        worldPos.y += MoveUpScale;
         
         return(worldPos);
         //new GameObject("point").transform.position = worldPos;
