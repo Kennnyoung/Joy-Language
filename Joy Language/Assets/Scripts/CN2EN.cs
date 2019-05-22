@@ -5,13 +5,13 @@ using UnityEngine.UI;
 using Random = System.Random;
 using UnityEngine.SceneManagement;
 
-public class EN2CN : MonoBehaviour
+public class CN2EN : MonoBehaviour
 {
     [SerializeField] Button choice1;
     [SerializeField] Button choice2;
     [SerializeField] Button choice3;
     [SerializeField] Button choice4;
-    [SerializeField] Text englishShow;
+    [SerializeField] Text chineseShow;
     [SerializeField] Text checkAns;
 
     string correct;
@@ -24,10 +24,12 @@ public class EN2CN : MonoBehaviour
         choice2.onClick.AddListener(delegate { userPick(choice2); });
         choice3.onClick.AddListener(delegate { userPick(choice3); });
         choice4.onClick.AddListener(delegate { userPick(choice4); });
+
+        
     }
 
     void userPick(Button clicked) {
-        //print(clicked.GetComponentInChildren<Text>().text);
+        print(clicked.GetComponentInChildren<Text>().text);
         string userAns = clicked.GetComponentInChildren<Text>().text;
         if (userAns == correct) {
             print("Correct!");
@@ -39,26 +41,6 @@ public class EN2CN : MonoBehaviour
             checkAns.text = "False";
         }
         //Invoke("reloadScene", 1);
-    }
-
-    void printAll(VocabularySheet test) {
-        print("------Easy------");
-        foreach (var v in test.EasySheet) {
-            print(v.Key);
-            print(v.Value);
-        }
-
-        print("------Medium------");
-        foreach (var v in test.MediumSheet) {
-            print(v.Key);
-            print(v.Value);
-        }
-
-        print("------Hard------");
-        foreach (var v in test.HardSheet) {
-            print(v.Key);
-            print(v.Value);
-        }
     }
 
     private List<int> randomizedArr() {
@@ -83,7 +65,7 @@ public class EN2CN : MonoBehaviour
     // to reset the checkAns text box
     void resetCheckAns() {
         checkAns.text = "";
-        reloadScene();
+        reloadData();
     }
 
     // only for testing
@@ -101,7 +83,7 @@ public class EN2CN : MonoBehaviour
         // i will get the correct CN here
         correct = list[correctIndex].Spelling;
         // set the EN
-        englishShow.text = list[correctIndex].Meaning;
+        chineseShow.text = list[correctIndex].Meaning;
 
         // set the choice
         choice1.GetComponentInChildren<Text>().text = list[rlist[0]].Spelling;
