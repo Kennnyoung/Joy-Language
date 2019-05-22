@@ -34,6 +34,9 @@ public class CN2EN : MonoBehaviour
         if (userAns == correct) {
             print("Correct!");
             checkAns.text = "Correct";
+            //disable for a whihle
+            disableAllButton();
+
             Invoke("resetCheckAns", 0.1f);
         }
         else {
@@ -73,6 +76,22 @@ public class CN2EN : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    void disableAllButton() {
+        // disable all the button for now
+        choice1.interactable = false;
+        choice2.interactable = false;
+        choice3.interactable = false;
+        choice4.interactable = false;
+    }
+
+    void enableAllButton() {
+        // disable all the button for now
+        choice1.interactable = true;
+        choice2.interactable = true;
+        choice3.interactable = true;
+        choice4.interactable = true;
+    }
+
     void reloadData() {
         VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         List<Vocabulary> list = test.GetVList('M');
@@ -90,6 +109,9 @@ public class CN2EN : MonoBehaviour
         choice2.GetComponentInChildren<Text>().text = list[rlist[1]].Spelling;
         choice3.GetComponentInChildren<Text>().text = list[rlist[2]].Spelling;
         choice4.GetComponentInChildren<Text>().text = list[rlist[3]].Spelling;
+
+        // enable all after refresh
+        enableAllButton();
     }
 
     // Update is called once per frame
