@@ -16,8 +16,9 @@ public class StarAnimation : MonoBehaviour
         
     }
 
-    public void MoveBack()
+    public void MoveBack(float tempDuration,Vector3 tempPosition)
     {
         starAnimator.SetBool("isMakingChoice", false);
+        iTween.MoveTo(gameObject, iTween.Hash("position", tempPosition, "time", tempDuration, "easetype", "easeInOutQuart"));
     }
 }

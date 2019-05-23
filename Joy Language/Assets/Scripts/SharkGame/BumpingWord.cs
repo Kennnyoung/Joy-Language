@@ -13,7 +13,6 @@ public class BumpingWord : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.name);
         collision.SendMessage("MoveToBlank");
     }
     //private IEnumerator OnCollisionEnter2D(Collision2D collision)

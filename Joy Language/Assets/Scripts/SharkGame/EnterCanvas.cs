@@ -20,6 +20,6 @@ public class EnterCanvas : MonoBehaviour
 
     void SetAim(Vector3 tempAim)
     {
-        iTween.MoveTo(gameObject, iTween.Hash("position", tempAim, "time", duration, "easetype", "easeInOutBack"));
+        iTween.MoveTo(gameObject, iTween.Hash("position", tempAim, "time", duration, "easetype", "easeOutBack"));
     }
 }
