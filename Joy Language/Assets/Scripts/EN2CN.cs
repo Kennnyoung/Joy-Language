@@ -113,7 +113,7 @@ public class EN2CN : MonoBehaviour
 
     void reloadData() {
         VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
-        List<Vocabulary> list = test.GetVList('M');
+        List<Vocabulary> list = test.GetVList('M', 4);
 
         List<int> rlist = randomizedArr();
         Random rand = new Random();
