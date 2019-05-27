@@ -37,7 +37,7 @@ public class VocabularyManager : MonoBehaviour
 
     public (string, List<List<string>>) PopQuestionEtC(char difficulty)
     {
-        List<Vocabulary> vLst = vSheet.GetVList(difficulty);
+        List<Vocabulary> vLst = vSheet.GetVList(difficulty, 5);
 
         string question = vLst[0].Spelling;
 
