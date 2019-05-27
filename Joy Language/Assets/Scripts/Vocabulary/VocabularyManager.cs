@@ -13,7 +13,7 @@ public class VocabularyManager : MonoBehaviour
     }
 
     // Generate choice for the user.
-    public (List<string>, List<string>) PopQuestion(char difficulty)
+    public (List<string>, List<string>) PopQuestionCtE(char difficulty)
     {
         List<Vocabulary> vLst = vSheet.GetVList(difficulty);
 
@@ -35,12 +35,36 @@ public class VocabularyManager : MonoBehaviour
         return (question, choices);
     }
 
+    public (string, List<List<string>>) PopQuestionEtC(char difficulty)
+    {
+        List<Vocabulary> vLst = vSheet.GetVList(difficulty);
+
+        string question = vLst[0].Spelling;
+
+        List<List<string>> choices = new List<List<string>>();
+        foreach (Vocabulary v in vLst)
+        {
+            List<string> choice = new List<string>();
+            foreach (Vocabulary voc in vSheet.FindVocabulary(v.Spelling))
+            {
+                choice.Add(voc.Meaning);
+            }
+
+            if (!choices.Contains(choice))
+            {
+                choices.Add(choice);
+            }
+        }
+
+        return (question, choices);
+    }
+
     // For Test.
     void Update()
     {
         if (Input.GetKey(KeyCode.T))
         {
-            (List<string>, List<string>) test = PopQuestion('E');
+            (List<string>, List<string>) test = PopQuestionCtE('E');
             foreach (string meaning in test.Item1)
             {
                 Debug.Log(meaning);
