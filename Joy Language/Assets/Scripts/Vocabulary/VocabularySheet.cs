@@ -49,7 +49,7 @@ public class VocabularySheet
     }
 
     // Generate the a vocabulary list to study based on the difficulty.
-    public List<Vocabulary> GetVList(char difficulty)
+    public List<Vocabulary> GetVList(char difficulty, int length)
     {
         // TODO: For now, just get 5 word randomly.
         Dictionary<string, List<Vocabulary>> vSheet;
@@ -65,7 +65,7 @@ public class VocabularySheet
         }
 
         List<Vocabulary> result = new List<Vocabulary>();
-        int size = 4;
+        int size = length;
         int sheetSize = vSheet.Count;
         if (sheetSize <= size)
         {
