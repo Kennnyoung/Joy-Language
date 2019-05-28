@@ -6,10 +6,15 @@ public class VocabularyManager : MonoBehaviour
 {
     public VocabularySheet vSheet;
 
+    public int combo;
+
+    private string curVoc;
+
     // Start is called before the first frame update
     void Start()
     {
         vSheet = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
+        combo = 0;
     }
 
     // Generate choice for the user.
@@ -31,6 +36,8 @@ public class VocabularyManager : MonoBehaviour
         {
             question.Add(v.Meaning);
         }
+
+        curVoc = vLst[0].Spelling;
 
         return (question, choices);
     }
@@ -56,7 +63,22 @@ public class VocabularyManager : MonoBehaviour
             }
         }
 
+        curVoc = vLst[0].Spelling;
+
         return (question, choices);
+    }
+
+    public void pass(bool isPass)
+    {
+        if (isPass)
+        {
+            combo++;
+            vSheet.UpdateExp(curVoc, 1);
+        } else
+        {
+            combo = 0;
+            vSheet.UpdateExp(curVoc, -1);
+        }
     }
 
     // For Test.

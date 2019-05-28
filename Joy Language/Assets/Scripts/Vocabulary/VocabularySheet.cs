@@ -10,6 +10,7 @@ public class VocabularySheet
     public Dictionary<string, List<Vocabulary>> EasySheet { get; }
     public Dictionary<string, List<Vocabulary>> MediumSheet { get; }
     public Dictionary<string, List<Vocabulary>> HardSheet { get; }
+    public Dictionary<string, int> ExpMap { get; }
 
     // Read the vocabulary from a json file.
     public VocabularySheet(string fileLocation)
@@ -17,6 +18,7 @@ public class VocabularySheet
         EasySheet = new Dictionary<string, List<Vocabulary>>();
         MediumSheet = new Dictionary<string, List<Vocabulary>>();
         HardSheet = new Dictionary<string, List<Vocabulary>>();
+        ExpMap = new Dictionary<string, int>();
 
         // read the target file as chinese char
         string upStr = File.ReadAllText(fileLocation, Encoding.GetEncoding("gb2312"));
@@ -44,6 +46,7 @@ public class VocabularySheet
             } else
             {
                 vSheet.Add(v.Spelling, new List<Vocabulary>() { v });
+                ExpMap.Add(v.Spelling, 0);
             }
         }
     }
@@ -134,5 +137,10 @@ public class VocabularySheet
         }
 
         return null;
+    }
+
+    public void UpdateExp(string spelling, int score)
+    {
+        ExpMap[spelling] += score;
     }
 }
