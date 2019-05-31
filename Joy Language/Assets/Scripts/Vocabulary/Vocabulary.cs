@@ -18,7 +18,7 @@ public class Vocabulary
         Syllable = syllable;
     }
 
-    public void printV() {
+    public void PrintV() {
         Debug.Log(Id + " " + Spelling + " " + Pos + " " + Meaning + " " + Syllable);
     }
 }
