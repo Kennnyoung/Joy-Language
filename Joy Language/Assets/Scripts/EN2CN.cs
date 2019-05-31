@@ -13,12 +13,18 @@ public class EN2CN : MonoBehaviour
     [SerializeField] Button choice4;
     [SerializeField] Text englishShow;
     [SerializeField] Text checkAns;
+    [SerializeField] GameObject LevelDetail;
 
     string correct;
+    UnitSelection allLevel; 
 
     // Start is called before the first frame update
     void Start(){
         reloadData();
+
+        // get the level detail
+        UnitSelection temp = LevelDetail.GetComponent<UnitSelection>();
+        allLevel = temp;
 
         choice1.onClick.AddListener(delegate { userPick(choice1); });
         choice2.onClick.AddListener(delegate { userPick(choice2); });
@@ -35,7 +41,8 @@ public class EN2CN : MonoBehaviour
 
             //disable for a whihle
             disableAllButton();
-
+            //mark the level as we complete
+            allLevel.saveComplete(3);
             Invoke("resetCheckAns", 0.1f);
         }
         else {
@@ -46,6 +53,10 @@ public class EN2CN : MonoBehaviour
     }
 
     void printAll(VocabularySheet test) {
+        print(test.EasySheet.Count);
+        print(test.MediumSheet.Count);
+        print(test.HardSheet.Count);
+
         print("------Easy------");
         foreach (var v in test.EasySheet) {
             print(v.Key);
@@ -87,13 +98,13 @@ public class EN2CN : MonoBehaviour
     // to reset the checkAns text box
     void resetCheckAns() {
         checkAns.text = "";
-        reloadScene();
+        reloadData();
     }
 
     // only for testing
-    void reloadScene() {
-        SceneManager.LoadScene(1);
-    }
+    //void reloadScene() {
+    //    SceneManager.LoadScene(1);
+    //}
 
     void disableAllButton() {
         // disable all the button for now
@@ -114,6 +125,7 @@ public class EN2CN : MonoBehaviour
     void reloadData() {
         VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         List<Vocabulary> list = test.GetVList('M', 4);
+        //printAll(test);
 
         List<int> rlist = randomizedArr();
         Random rand = new Random();
