@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,14 +10,12 @@ public class GameManager : MonoBehaviour
     public float enterAnimationDuration;
     public Transform star;
     public Transform shark;
+    public GameObject optionVanishParticle;
 
     // generate question
-    public GameObject vocManager;
-    private VocabularyManager vManger;
-
     public Text question;
 
-    GameObject Button;
+    GameObject button;
     public Transform canvas;
     public Transform choice;
     public Transform spawnPosition;
@@ -38,33 +36,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        vManger = vocManager.GetComponent<VocabularyManager>();
+        question.text = "This bed sheet has multiple ______ ";
         StartCoroutine(StartLevel());
-        GenerateQuestion();
-    }
-
-    // Get New question.
-    void GetNewQuest()
-    {
-        (List<string>, List<string>) quest = vManger.PopQuestionCtE('E');
-
-        question.text = string.Join(";", quest.Item1) + "\n_____";
-        answers[0] = quest.Item2[0];
-        answers[1] = quest.Item2[1];
-        answers[2] = quest.Item2[2];
-    }
-
-    void GenerateQuestion()
-    {
-        GetNewQuest();
-        GenerateOptions();
-    }
+    } 
 
     IEnumerator StartLevel()
     {
         star.SendMessage("Enter", enterAnimationDuration);
         shark.SendMessage("Enter", enterAnimationDuration);
         yield return new WaitForSeconds(enterAnimationDuration);
+        GenerateOptions();
     }
     void GenerateOptions()
     {
@@ -96,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TestChoice(bool tempTest)
     {
-        vManger.Pass(tempTest);
+        answerCheck = tempTest;
 
         yield return null;
         for (int i=0; i < buttons.Count; i++)
@@ -104,7 +85,8 @@ public class GameManager : MonoBehaviour
             Transform button = buttons[i];
             if (button.tag != "Current Answer")
             {
-
+                Instantiate(optionVanishParticle, button.position,Quaternion.identity);
+                GameObject.Destroy(button.gameObject);
             }
         }
     }
