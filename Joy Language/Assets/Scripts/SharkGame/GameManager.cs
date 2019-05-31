@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        question.text = "This bed sheet has multiple _____";
+        question.text = "This bed sheet has multiple ______ ";
         StartCoroutine(StartLevel());
     } 
 
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
     IEnumerator TestChoice(bool tempTest)
     {
         answerCheck = tempTest;
+
         yield return null;
         for (int i=0; i < buttons.Count; i++)
         {
