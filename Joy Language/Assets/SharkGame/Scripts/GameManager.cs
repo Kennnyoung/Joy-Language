@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,9 +12,12 @@ public class GameManager : MonoBehaviour
     public Transform shark;
 
     // generate question
+    public GameObject vocManager;
+    private VocabularyManager vManger;
+
     public Text question;
 
-    GameObject button;
+    GameObject Button;
     public Transform canvas;
     public Transform choice;
     public Transform spawnPosition;
@@ -35,16 +38,33 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        question.text = "This bed sheet has multiple ______ ";
+        vManger = vocManager.GetComponent<VocabularyManager>();
         StartCoroutine(StartLevel());
-    } 
+        GenerateQuestion();
+    }
+
+    // Get New question.
+    void GetNewQuest()
+    {
+        (List<string>, List<string>) quest = vManger.PopQuestionCtE('E');
+
+        question.text = string.Join(";", quest.Item1) + "\n_____";
+        answers[0] = quest.Item2[0];
+        answers[1] = quest.Item2[1];
+        answers[2] = quest.Item2[2];
+    }
+
+    void GenerateQuestion()
+    {
+        GetNewQuest();
+        GenerateOptions();
+    }
 
     IEnumerator StartLevel()
     {
         star.SendMessage("Enter", enterAnimationDuration);
         shark.SendMessage("Enter", enterAnimationDuration);
         yield return new WaitForSeconds(enterAnimationDuration);
-        GenerateOptions();
     }
     void GenerateOptions()
     {
@@ -76,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TestChoice(bool tempTest)
     {
-        answerCheck = tempTest;
+        vManger.Pass(tempTest);
 
         yield return null;
         for (int i=0; i < buttons.Count; i++)

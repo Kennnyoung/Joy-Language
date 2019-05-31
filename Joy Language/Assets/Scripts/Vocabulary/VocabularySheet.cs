@@ -4,12 +4,14 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Random = System.Random;
+using UnityEngine;
 
 public class VocabularySheet
 {
     public Dictionary<string, List<Vocabulary>> EasySheet { get; }
     public Dictionary<string, List<Vocabulary>> MediumSheet { get; }
     public Dictionary<string, List<Vocabulary>> HardSheet { get; }
+    public Dictionary<string, int> ExpMap { get; }
 
     // Read the vocabulary from a json file.
     public VocabularySheet(string fileLocation)
@@ -17,6 +19,7 @@ public class VocabularySheet
         EasySheet = new Dictionary<string, List<Vocabulary>>();
         MediumSheet = new Dictionary<string, List<Vocabulary>>();
         HardSheet = new Dictionary<string, List<Vocabulary>>();
+        ExpMap = new Dictionary<string, int>();
 
         // read the target file as chinese char
         string upStr = File.ReadAllText(fileLocation, Encoding.GetEncoding("gb2312"));
@@ -26,10 +29,10 @@ public class VocabularySheet
         foreach (Vocabulary v in vLst)
         {
             Dictionary<string, List<Vocabulary>> vSheet;
-            if (v.Spelling.Length <= 4)
+            if (v.Spelling.Length <= 5)
             {
                 vSheet = EasySheet;
-            } else if (v.Spelling.Length <= 8 && v.Spelling.Length > 4)
+            } else if (v.Spelling.Length <= 10 && v.Spelling.Length > 5)
             {
                 vSheet = MediumSheet;
             } else
@@ -44,12 +47,13 @@ public class VocabularySheet
             } else
             {
                 vSheet.Add(v.Spelling, new List<Vocabulary>() { v });
+                ExpMap.Add(v.Spelling, 0);
             }
         }
     }
 
     // Generate the a vocabulary list to study based on the difficulty.
-    public List<Vocabulary> GetVList(char difficulty)
+    public List<Vocabulary> GetVList(char difficulty, int length)
     {
         // TODO: For now, just get 5 word randomly.
         Dictionary<string, List<Vocabulary>> vSheet;
@@ -64,8 +68,9 @@ public class VocabularySheet
             vSheet = HardSheet;
         }
 
+        Random rand = new Random();
         List<Vocabulary> result = new List<Vocabulary>();
-        int size = 4;
+        int size = length;
         int sheetSize = vSheet.Count;
         if (sheetSize <= size)
         {
@@ -77,7 +82,7 @@ public class VocabularySheet
         {
             List<List<Vocabulary>> vLst = vSheet.Values.ToList();
             // random pick
-            Random rand = new Random();
+            rand = new Random();
             int idx = 0;
             // not duplicate
             List<int> picked = new List<int>();
@@ -105,6 +110,17 @@ public class VocabularySheet
                 idx++;
             }
         }
+
+        for (int i = 0; i < result.Count - 1; i++)
+        {
+            Vocabulary v = result[i];
+            int idx = rand.Next(i, result.Count);
+            result[i] = result[idx];
+            result[idx] = result[i];
+        }
+        Debug.Log(result[0].Spelling);
+        Debug.Log(result[1].Spelling);
+        Debug.Log(result[2].Spelling);
 
         return result;
     }
@@ -134,5 +150,10 @@ public class VocabularySheet
         }
 
         return null;
+    }
+
+    public void UpdateExp(string spelling, int score)
+    {
+        ExpMap[spelling] += score;
     }
 }

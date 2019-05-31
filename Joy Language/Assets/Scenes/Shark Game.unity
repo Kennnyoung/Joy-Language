@@ -5195,6 +5195,7 @@ MonoBehaviour:
   enterAnimationDuration: 2
   star: {fileID: 1808828570}
   shark: {fileID: 1921520957}
+  vocManager: {fileID: 2046170204}
   question: {fileID: 1283878657}
   canvas: {fileID: 1329254697}
   choice: {fileID: 7156826209496344795, guid: 39ba1ab7b094bd844b652441de63731f, type: 3}
