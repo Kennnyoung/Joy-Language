@@ -83,7 +83,9 @@ public class GameManager : MonoBehaviour
         {
             Transform button = buttons[i];
             if (button.tag != "Current Answer")
-                Destroy(button.gameObject);
+            {
+
+            }
         }
     }
 }
