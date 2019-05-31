@@ -6,11 +6,13 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Text Question;
-    //public TextMeshProUGUI ChoiceOne;
-    //public TextMeshProUGUI ChoiceTwo;
-    //public TextMeshProUGUI ChoiceThree;
+    // animation
+    public float enterAnimationDuration;
+    public Transform star;
+    public Transform shark;
 
+    // generate question
+    public Text question;
 
     GameObject button;
     public Transform canvas;
@@ -23,56 +25,28 @@ public class GameManager : MonoBehaviour
     List<Transform> buttons;
     List<Transform> targets;
 
+    // answerCheck
     bool answerCheck;
     void Awake()
     {
         targets = new List<Transform>();
         buttons = new List<Transform>();
-        GenerateChoices();
     }
     // Start is called before the first frame update
     void Start()
     {
-        Question.text = "This bed sheet has multiple _____";
-        //ChoiceOne.text = "layers";
-        //ChoiceTwo.text = "steps";
-        //ChoiceThree.text = "levels";
-        //ChoiceOne.tag = "Correct Answer";
+        question.text = "This bed sheet has multiple _____";
+        StartCoroutine(StartLevel());
+    } 
+
+    IEnumerator StartLevel()
+    {
+        star.SendMessage("Enter", enterAnimationDuration);
+        shark.SendMessage("Enter", enterAnimationDuration);
+        yield return new WaitForSeconds(enterAnimationDuration);
+        GenerateOptions();
     }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-
-
-    //public void AnswerCorrect()
-    //{
-    //    Reset();
-    //}
-
-    //public void AnswerWrong()
-    //{
-    //    Reset();
-    //}
-
-
-    //public void DisableCollider()
-    //{
-    //    ChoiceOne.GetComponent<Collider2D>().enabled = (ChoiceOne.tag == "Correct Answer") ? true : false;
-    //    ChoiceTwo.GetComponent<Collider2D>().enabled = (ChoiceTwo.tag == "Correct Answer") ? true : false;
-    //    ChoiceThree.GetComponent<Collider2D>().enabled = (ChoiceThree.tag == "Correct Answer") ? true : false;
-    //}
-
-    //public void Reset()
-    //{
-    //    ChoiceOne.enabled = false;
-    //    ChoiceTwo.enabled = false;
-    //    ChoiceThree.enabled = false;
-    //}
-
-    void GenerateChoices()
+    void GenerateOptions()
     {
         // get target positions
         for (int j = 0; j < choicePositions.Length; j++)
