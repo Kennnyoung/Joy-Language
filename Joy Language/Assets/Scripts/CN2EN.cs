@@ -5,44 +5,38 @@ using UnityEngine.UI;
 using Random = System.Random;
 using UnityEngine.SceneManagement;
 
-public class EN2CN : MonoBehaviour
+public class CN2EN : MonoBehaviour
 {
     [SerializeField] Button choice1;
     [SerializeField] Button choice2;
     [SerializeField] Button choice3;
     [SerializeField] Button choice4;
-    [SerializeField] Text englishShow;
+    [SerializeField] Text chineseShow;
     [SerializeField] Text checkAns;
-    [SerializeField] GameObject LevelDetail;
 
     string correct;
-    UnitSelection allLevel; 
 
     // Start is called before the first frame update
     void Start(){
         reloadData();
 
-        // get the level detail
-        UnitSelection temp = LevelDetail.GetComponent<UnitSelection>();
-        allLevel = temp;
-
         choice1.onClick.AddListener(delegate { userPick(choice1); });
         choice2.onClick.AddListener(delegate { userPick(choice2); });
         choice3.onClick.AddListener(delegate { userPick(choice3); });
         choice4.onClick.AddListener(delegate { userPick(choice4); });
+
+        
     }
 
     void userPick(Button clicked) {
-        //print(clicked.GetComponentInChildren<Text>().text);
+        print(clicked.GetComponentInChildren<Text>().text);
         string userAns = clicked.GetComponentInChildren<Text>().text;
         if (userAns == correct) {
             print("Correct!");
             checkAns.text = "Correct";
-
             //disable for a whihle
             disableAllButton();
-            //mark the level as we complete
-            allLevel.saveComplete(3);
+
             Invoke("resetCheckAns", 0.1f);
         }
         else {
@@ -50,30 +44,6 @@ public class EN2CN : MonoBehaviour
             checkAns.text = "False";
         }
         //Invoke("reloadScene", 1);
-    }
-
-    void printAll(VocabularySheet test) {
-        print(test.EasySheet.Count);
-        print(test.MediumSheet.Count);
-        print(test.HardSheet.Count);
-
-        print("------Easy------");
-        foreach (var v in test.EasySheet) {
-            print(v.Key);
-            print(v.Value);
-        }
-
-        print("------Medium------");
-        foreach (var v in test.MediumSheet) {
-            print(v.Key);
-            print(v.Value);
-        }
-
-        print("------Hard------");
-        foreach (var v in test.HardSheet) {
-            print(v.Key);
-            print(v.Value);
-        }
     }
 
     private List<int> randomizedArr() {
@@ -102,9 +72,9 @@ public class EN2CN : MonoBehaviour
     }
 
     // only for testing
-    //void reloadScene() {
-    //    SceneManager.LoadScene(1);
-    //}
+    void reloadScene() {
+        SceneManager.LoadScene(1);
+    }
 
     void disableAllButton() {
         // disable all the button for now
@@ -125,7 +95,6 @@ public class EN2CN : MonoBehaviour
     void reloadData() {
         VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         List<Vocabulary> list = test.GetVList('M', 4);
-        //printAll(test);
 
         List<int> rlist = randomizedArr();
         Random rand = new Random();
@@ -133,7 +102,7 @@ public class EN2CN : MonoBehaviour
         // i will get the correct CN here
         correct = list[correctIndex].Spelling;
         // set the EN
-        englishShow.text = list[correctIndex].Meaning;
+        chineseShow.text = list[correctIndex].Meaning;
 
         // set the choice
         choice1.GetComponentInChildren<Text>().text = list[rlist[0]].Spelling;
