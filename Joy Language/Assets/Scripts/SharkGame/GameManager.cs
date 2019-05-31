@@ -48,10 +48,21 @@ public class GameManager : MonoBehaviour
     {
         (List<string>, List<string>) quest = vManger.PopQuestionCtE('E');
 
-        question.text = string.Join(";", quest.Item1) + "\n_____";
+        question.text = string.Join(";", quest.Item1);
         answers[0] = quest.Item2[0];
         answers[1] = quest.Item2[1];
         answers[2] = quest.Item2[2];
+
+        int maxLen = 0;
+        foreach (string ans in answers)
+        {
+            if (ans.Length > maxLen)
+            {
+                maxLen = ans.Length;
+            }
+        }
+
+        question.text += "\n" + new string('_', maxLen);
     }
 
     void GenerateQuestion()
