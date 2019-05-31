@@ -5,7 +5,8 @@ using UnityEngine;
 public class ScrollScript : MonoBehaviour
 {
     // Start is called before the first frame update
-    float ScrollSpeed = -5f;
+    public float scrollSpeed;
+    public float scrollLength;
     Vector2 StartPos;
 
     void Start()
@@ -16,7 +17,7 @@ public class ScrollScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float newPos = Mathf.Repeat(Time.time * ScrollSpeed, 20);
-        transform.position = StartPos + Vector2.up * newPos;
+        float newPos = Mathf.Repeat(Time.time * scrollSpeed, scrollLength);
+        transform.position = StartPos + Vector2.down * newPos;
     }
 }
