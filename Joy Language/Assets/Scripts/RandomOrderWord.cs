@@ -35,7 +35,7 @@ public class RandomOrderWord : MonoBehaviour
         VocabularySheet allWords = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         Vocabulary picked = allWords.GetVList('M', 1)[0];
         correctAns = picked.Spelling;
-        picked.printV();
+        picked.PrintV();
 
         // set up the question
         CN.text = picked.Meaning;
