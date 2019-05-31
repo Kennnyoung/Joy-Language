@@ -6,14 +6,19 @@ public class VocabularyManager : MonoBehaviour
 {
     public VocabularySheet vSheet;
 
+    public int combo;
+
+    private string curVoc;
+
     // Start is called before the first frame update
     void Start()
     {
         vSheet = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
+        combo = 0;
     }
 
     // Generate choice for the user.
-    public (List<string>, List<string>) PopQuestion(char difficulty)
+    public (List<string>, List<string>) PopQuestionCtE(char difficulty)
     {
         List<Vocabulary> vLst = vSheet.GetVList(difficulty, 5);
 
@@ -32,7 +37,48 @@ public class VocabularyManager : MonoBehaviour
             question.Add(v.Meaning);
         }
 
+        curVoc = vLst[0].Spelling;
+
         return (question, choices);
+    }
+
+    public (string, List<List<string>>) PopQuestionEtC(char difficulty)
+    {
+        List<Vocabulary> vLst = vSheet.GetVList(difficulty, 5);
+
+        string question = vLst[0].Spelling;
+
+        List<List<string>> choices = new List<List<string>>();
+        foreach (Vocabulary v in vLst)
+        {
+            List<string> choice = new List<string>();
+            foreach (Vocabulary voc in vSheet.FindVocabulary(v.Spelling))
+            {
+                choice.Add(voc.Meaning);
+            }
+
+            if (!choices.Contains(choice))
+            {
+                choices.Add(choice);
+            }
+        }
+
+        curVoc = vLst[0].Spelling;
+
+        return (question, choices);
+    }
+
+    public void pass(bool isPass)
+    {
+        if (isPass)
+        {
+            combo++;
+            vSheet.UpdateExp(curVoc, 1);
+        } else
+        {
+            combo = 0;
+            vSheet.UpdateExp(curVoc, -1);
+        }
     }
 
     // For Test.
@@ -40,7 +86,7 @@ public class VocabularyManager : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.T))
         {
-            (List<string>, List<string>) test = PopQuestion('E');
+            (List<string>, List<string>) test = PopQuestionCtE('E');
             foreach (string meaning in test.Item1)
             {
                 Debug.Log(meaning);
