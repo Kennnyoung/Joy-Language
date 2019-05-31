@@ -8,7 +8,7 @@ public class Star_EnterCanvas : MonoBehaviour
     public Transform enterPosition;
     Vector3 idlePosition;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         idlePosition = transform.position;
         shark.SendMessage("SetAim", idlePosition);

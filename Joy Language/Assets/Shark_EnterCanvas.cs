@@ -8,7 +8,7 @@ public class Shark_EnterCanvas : MonoBehaviour
     public float delay;
     Vector3 idlePosition;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         idlePosition = transform.position;
     }
