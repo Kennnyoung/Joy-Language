@@ -11,7 +11,7 @@ public class VocabularyManager : MonoBehaviour
     private string curVoc;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         vSheet = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         combo = 0;
@@ -68,7 +68,7 @@ public class VocabularyManager : MonoBehaviour
         return (question, choices);
     }
 
-    public void pass(bool isPass)
+    public void Pass(bool isPass)
     {
         if (isPass)
         {
@@ -76,7 +76,7 @@ public class VocabularyManager : MonoBehaviour
             vSheet.UpdateExp(curVoc, 1);
         } else
         {
-            combo = 0;
+            //combo = 0;
             vSheet.UpdateExp(curVoc, -1);
         }
     }

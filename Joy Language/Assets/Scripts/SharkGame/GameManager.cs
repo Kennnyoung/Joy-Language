@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,13 +6,18 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public Text Question;
-    //public TextMeshProUGUI ChoiceOne;
-    //public TextMeshProUGUI ChoiceTwo;
-    //public TextMeshProUGUI ChoiceThree;
+    // animation
+    public float enterAnimationDuration;
+    public Transform star;
+    public Transform shark;
 
+    // generate question
+    public GameObject vocManager;
+    private VocabularyManager vManger;
 
-    GameObject button;
+    public Text question;
+
+    GameObject Button;
     public Transform canvas;
     public Transform choice;
     public Transform spawnPosition;
@@ -23,56 +28,56 @@ public class GameManager : MonoBehaviour
     List<Transform> buttons;
     List<Transform> targets;
 
+    // answerCheck
     bool answerCheck;
     void Awake()
     {
         targets = new List<Transform>();
         buttons = new List<Transform>();
-        GenerateChoices();
     }
     // Start is called before the first frame update
     void Start()
     {
-        Question.text = "This bed sheet has multiple _____";
-        //ChoiceOne.text = "layers";
-        //ChoiceTwo.text = "steps";
-        //ChoiceThree.text = "levels";
-        //ChoiceOne.tag = "Correct Answer";
+        vManger = vocManager.GetComponent<VocabularyManager>();
+        StartCoroutine(StartLevel());
+        GenerateQuestion();
     }
 
-    //// Update is called once per frame
-    //void Update()
-    //{
+    // Get New question.
+    void GetNewQuest()
+    {
+        (List<string>, List<string>) quest = vManger.PopQuestionCtE('E');
 
-    //}
+        question.text = string.Join(";", quest.Item1);
+        answers[0] = quest.Item2[0];
+        answers[1] = quest.Item2[1];
+        answers[2] = quest.Item2[2];
 
+        int maxLen = 0;
+        foreach (string ans in answers)
+        {
+            if (ans.Length > maxLen)
+            {
+                maxLen = ans.Length;
+            }
+        }
 
-    //public void AnswerCorrect()
-    //{
-    //    Reset();
-    //}
+        question.text += "\n" + new string('_', maxLen);
+    }
 
-    //public void AnswerWrong()
-    //{
-    //    Reset();
-    //}
+    void GenerateQuestion()
+    {
+        GetNewQuest();
+        GenerateOptions();
+    }
 
-
-    //public void DisableCollider()
-    //{
-    //    ChoiceOne.GetComponent<Collider2D>().enabled = (ChoiceOne.tag == "Correct Answer") ? true : false;
-    //    ChoiceTwo.GetComponent<Collider2D>().enabled = (ChoiceTwo.tag == "Correct Answer") ? true : false;
-    //    ChoiceThree.GetComponent<Collider2D>().enabled = (ChoiceThree.tag == "Correct Answer") ? true : false;
-    //}
-
-    //public void Reset()
-    //{
-    //    ChoiceOne.enabled = false;
-    //    ChoiceTwo.enabled = false;
-    //    ChoiceThree.enabled = false;
-    //}
-
-    void GenerateChoices()
+    IEnumerator StartLevel()
+    {
+        star.SendMessage("Enter", enterAnimationDuration);
+        shark.SendMessage("Enter", enterAnimationDuration);
+        yield return new WaitForSeconds(enterAnimationDuration);
+    }
+    void GenerateOptions()
     {
         // get target positions
         for (int j = 0; j < choicePositions.Length; j++)
@@ -102,7 +107,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator TestChoice(bool tempTest)
     {
-        answerCheck = tempTest;
+        vManger.Pass(tempTest);
+
         yield return null;
         for (int i=0; i < buttons.Count; i++)
         {

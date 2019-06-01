@@ -5,20 +5,15 @@ using UnityEngine;
 public class BumpingWord : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameManager GM;
+    //public GameManager GM;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("!!!!");
+        collision.SendMessage("MoveToBlank");
     }
     //private IEnumerator OnCollisionEnter2D(Collision2D collision)
     //{

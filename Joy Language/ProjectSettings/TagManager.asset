@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Correct Answer
   - Current Answer
+  - Star
   layers:
   - Default
   - TransparentFX

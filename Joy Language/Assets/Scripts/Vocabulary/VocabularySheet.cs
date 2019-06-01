@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Newtonsoft.Json;
 using Random = System.Random;
+using UnityEngine;
 
 public class VocabularySheet
 {
@@ -28,10 +29,10 @@ public class VocabularySheet
         foreach (Vocabulary v in vLst)
         {
             Dictionary<string, List<Vocabulary>> vSheet;
-            if (v.Spelling.Length <= 4)
+            if (v.Spelling.Length <= 5)
             {
                 vSheet = EasySheet;
-            } else if (v.Spelling.Length <= 8 && v.Spelling.Length > 4)
+            } else if (v.Spelling.Length <= 10 && v.Spelling.Length > 5)
             {
                 vSheet = MediumSheet;
             } else
@@ -67,6 +68,7 @@ public class VocabularySheet
             vSheet = HardSheet;
         }
 
+        Random rand = new Random();
         List<Vocabulary> result = new List<Vocabulary>();
         int size = length;
         int sheetSize = vSheet.Count;
@@ -80,7 +82,7 @@ public class VocabularySheet
         {
             List<List<Vocabulary>> vLst = vSheet.Values.ToList();
             // random pick
-            Random rand = new Random();
+            rand = new Random();
             int idx = 0;
             // not duplicate
             List<int> picked = new List<int>();
@@ -108,6 +110,17 @@ public class VocabularySheet
                 idx++;
             }
         }
+
+        for (int i = 0; i < result.Count - 1; i++)
+        {
+            Vocabulary v = result[i];
+            int idx = rand.Next(i, result.Count);
+            result[i] = result[idx];
+            result[idx] = result[i];
+        }
+        Debug.Log(result[0].Spelling);
+        Debug.Log(result[1].Spelling);
+        Debug.Log(result[2].Spelling);
 
         return result;
     }
