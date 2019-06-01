@@ -418,8 +418,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 2031988700}
   - {fileID: 1519040184}
+  - {fileID: 2031988700}
   - {fileID: 1670851868}
   - {fileID: 56076597}
   m_Father: {fileID: 0}
@@ -446,6 +446,8 @@ MonoBehaviour:
   panel: {fileID: 1019140433}
   fullStart: {fileID: 21300000, guid: 29d4bc723a58cc14e890004ef1dadf33, type: 3}
   emptyStart: {fileID: 21300000, guid: 54ec3313af607d747b5b008b51b15a35, type: 3}
+  en2cn: {fileID: 300193156}
+  currentLevel: 1
 --- !u!225 &13879254
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2483,6 +2485,7 @@ MonoBehaviour:
   englishShow: {fileID: 886688261}
   checkAns: {fileID: 1196040309}
   LevelDetail: {fileID: 13879246}
+  currentCanvas: {fileID: 300193156}
 --- !u!1 &315659534
 GameObject:
   m_ObjectHideFlags: 0
@@ -13872,7 +13875,7 @@ RectTransform:
   m_Children:
   - {fileID: 1418460158}
   m_Father: {fileID: 13879252}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -19635,7 +19638,7 @@ PrefabInstance:
     - target: {fileID: 3803865387195836355, guid: b2a8e6ce25528f74fba2c8c321ea6d44,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3803865387195836355, guid: b2a8e6ce25528f74fba2c8c321ea6d44,
         type: 3}
