@@ -34,10 +34,11 @@ public class UnitSelection : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] Sprite fullStart;
     [SerializeField] Sprite emptyStart;
+    [SerializeField] GameObject en2cn;
 
     List<LevelDetail> allLevel;
     List<Button> levelButtons = new List<Button>();
-    int currentLevel = 1;
+    public int currentLevel = 1;
 
     // Start is called before the first frame update
     void Start(){
@@ -75,6 +76,8 @@ public class UnitSelection : MonoBehaviour
     // store the current level user pick
     void userOnclick(Button eventObj) {
         currentLevel = int.Parse(eventObj.GetComponentInChildren<Text>().text);
+        EN2CN temp = en2cn.GetComponent<EN2CN>();
+        temp.newLevelIn();
     }
 
     public void saveComplete(int completeness) {
@@ -93,7 +96,7 @@ public class UnitSelection : MonoBehaviour
             else start.GetComponent<Image>().sprite = emptyStart;
         }
     }
-
+    
     // Update is called once per frame
     void Update()
     {
