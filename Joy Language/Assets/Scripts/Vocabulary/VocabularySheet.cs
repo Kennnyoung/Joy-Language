@@ -116,11 +116,11 @@ public class VocabularySheet
             Vocabulary v = result[i];
             int idx = rand.Next(i, result.Count);
             result[i] = result[idx];
-            result[idx] = result[i];
+            result[idx] = v;
         }
-        Debug.Log(result[0].Spelling);
-        Debug.Log(result[1].Spelling);
-        Debug.Log(result[2].Spelling);
+        Debug.Log(result[0].Spelling + " " + result[0].Pos);
+        Debug.Log(result[1].Spelling + " " + result[1].Pos);
+        Debug.Log(result[2].Spelling + " " + result[2].Pos);
 
         return result;
     }
