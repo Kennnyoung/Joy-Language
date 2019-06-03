@@ -437,6 +437,8 @@ MonoBehaviour:
   enterAnimationDuration: 2
   star: {fileID: 1808828570}
   shark: {fileID: 1921520957}
+  optionVanishParticle: {fileID: 7002583528690450755, guid: be140253951437147afac1b8feabcc39,
+    type: 3}
   vocManager: {fileID: 2046170204}
   question: {fileID: 1283878657}
   canvas: {fileID: 1329254697}
@@ -1281,6 +1283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8143163433a634f4081062ae7e5006da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combo: 0
 --- !u!4 &2046170206
 Transform:
   m_ObjectHideFlags: 0

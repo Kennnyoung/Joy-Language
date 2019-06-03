@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float enterAnimationDuration;
     public Transform star;
     public Transform shark;
+    public Transform optionVanishParticle;
 
     // generate question
     public GameObject vocManager;
@@ -114,7 +115,10 @@ public class GameManager : MonoBehaviour
         {
             Transform button = buttons[i];
             if (button.tag != "Current Answer")
+            {
+                Instantiate(optionVanishParticle, button.position, Quaternion.identity);
                 Destroy(button.gameObject);
+            }
         }
     }
 }

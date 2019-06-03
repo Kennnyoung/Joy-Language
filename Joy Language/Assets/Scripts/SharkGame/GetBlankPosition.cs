@@ -52,7 +52,9 @@ public class GetBlankPosition : MonoBehaviour
     {
         Vector3 worldPos = textComp.transform.TransformPoint(middleUnderScore);
         worldPos.y += MoveUpScale;
-        
+        GameObject blankPos = new GameObject();
+        blankPos.name = "BlankPosition";
+        blankPos.transform.position = worldPos;
         return(worldPos);
         //new GameObject("point").transform.position = worldPos;
         //Debug.DrawRay(worldPos, Vector3.up, Color.red, 50f);
