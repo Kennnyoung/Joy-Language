@@ -14,9 +14,9 @@ public class GetBlankPosition : MonoBehaviour
     {
         string text = textComp.text;
 
-        int charIndex = text.IndexOf('_') + 1;
+        int charIndex = text.IndexOf('_');
         Vector3 avgPosOne = GetAvgPos(charIndex);
-        charIndex = text.LastIndexOf('_') + 1;
+        charIndex = text.LastIndexOf('_');
         Vector3 avgPosTwo = GetAvgPos(charIndex);
         return GetWorldPos(0.5f * (avgPosOne + avgPosTwo) / canvas.scaleFactor);
     }
