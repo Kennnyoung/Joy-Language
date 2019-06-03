@@ -8,7 +8,8 @@ public class GetBlankPosition : MonoBehaviour
 {
     public Text textComp;
     public Canvas canvas;
-    public float MoveUpScale;
+    public float VerticalOffSet;
+    public float HorizontalOffSet;
 
     public Vector3 GetPos()
     {
@@ -51,7 +52,8 @@ public class GetBlankPosition : MonoBehaviour
     Vector3 GetWorldPos(Vector3 middleUnderScore)
     {
         Vector3 worldPos = textComp.transform.TransformPoint(middleUnderScore);
-        worldPos.y += MoveUpScale;
+        worldPos.y += VerticalOffSet;
+        worldPos.x += HorizontalOffSet;
         GameObject blankPos = new GameObject();
         blankPos.name = "BlankPosition";
         blankPos.transform.position = worldPos;
