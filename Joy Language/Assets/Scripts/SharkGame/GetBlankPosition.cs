@@ -30,7 +30,7 @@ public class GetBlankPosition : MonoBehaviour
         Vector2 extents = textComp.gameObject.GetComponent<RectTransform>().rect.size;
         textGen.Populate(text, textComp.GetGenerationSettings(extents));
 
-        int newLine = text.Substring(0, charIndex).Split('\n').Length - 1;
+        int newLine = text.Substring(0, charIndex).Split('\n').Length - 2;
         int whiteSpace = text.Substring(0, charIndex).Split(' ').Length - 1;
         int indexOfTextQuad = (charIndex * 4) + (newLine * 4) - 4;
         if (indexOfTextQuad < textGen.vertexCount)
@@ -54,10 +54,7 @@ public class GetBlankPosition : MonoBehaviour
         Vector3 worldPos = textComp.transform.TransformPoint(middleUnderScore);
         worldPos.y += VerticalOffSet;
         worldPos.x += HorizontalOffSet;
-        GameObject blankPos = new GameObject();
-        blankPos.name = "BlankPosition";
-        blankPos.transform.position = worldPos;
-        return(worldPos);
+        return (worldPos);
         //new GameObject("point").transform.position = worldPos;
         //Debug.DrawRay(worldPos, Vector3.up, Color.red, 50f);
     }

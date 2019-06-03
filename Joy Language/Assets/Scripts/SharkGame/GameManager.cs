@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Transform shark;
     public Transform optionVanishParticle;
 
+    UIFader questionFader;
     // generate question
     public GameObject vocManager;
     private VocabularyManager vManger;
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
     bool answerCheck;
     void Awake()
     {
+        questionFader = GetComponent<UIFader>();
+
         targets = new List<Transform>();
         buttons = new List<Transform>();
     }
@@ -67,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     void GenerateQuestion()
     {
+        questionFader.FadeIn();
         GetNewQuest();
         GenerateOptions();
     }
