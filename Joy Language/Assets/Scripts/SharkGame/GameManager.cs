@@ -106,12 +106,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator TestChoice(bool tempTest)
+    void TestChoice(bool tempTest)
     {
         vManger.Pass(tempTest);
 
-        yield return null;
         for (int i=0; i < buttons.Count; i++)
+        {
+            Transform button = buttons[i];
+            button.GetComponent<Button>().enabled = false;
+            if (button.tag != "Current Answer")
+                button.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    void OptionVanish()
+    {
+        for (int i = 0; i < buttons.Count; i++)
         {
             Transform button = buttons[i];
             if (button.tag != "Current Answer")

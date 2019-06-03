@@ -25,10 +25,9 @@ public class MakeChoice : MonoBehaviour
 
     void TestChoice()
     {
-        gameObject.GetComponent<Button>().enabled = false;
         bool test = (gameObject.tag == "Correct Answer") ? true : false;
-        gameManager.SendMessage("TestChoice", test);
         gameObject.tag = "Current Answer";
+        gameManager.SendMessage("TestChoice", test);
         PlayAnimation();
     }
 
@@ -40,7 +39,8 @@ public class MakeChoice : MonoBehaviour
 
     void MoveToBlank()
     {
-            Vector3 aim = blankPosition.GetPos();
-            iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutExpo"));   
+        Vector3 aim = blankPosition.GetPos();
+        iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutExpo"));
+        gameManager.SendMessage("OptionVanish");
     }
 }
