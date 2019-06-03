@@ -62,8 +62,7 @@ public class GameManager : MonoBehaviour
                 maxLen = ans.Length;
             }
         }
-
-        question.text += "\n" + new string('_', maxLen);
+        question.text += "\n\n" + new string('_', maxLen);
     }
 
     void GenerateQuestion()
@@ -78,6 +77,7 @@ public class GameManager : MonoBehaviour
         shark.SendMessage("Enter", enterAnimationDuration);
         yield return new WaitForSeconds(enterAnimationDuration);
     }
+
     void GenerateOptions()
     {
         // get target positions

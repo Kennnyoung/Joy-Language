@@ -651,7 +651,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -2.01}
-  m_SizeDelta: {x: 19.99, y: 4}
+  m_SizeDelta: {x: 18, y: 6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1283878656
 MonoBehaviour:
@@ -668,7 +668,7 @@ MonoBehaviour:
   textComp: {fileID: 1283878657}
   canvas: {fileID: 1329254696}
   VerticalOffSet: 0.2
-  HorizontalOffSet: 0.035
+  HorizontalOffSet: 0
 --- !u!114 &1283878657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 4beb055f07aaff244873dec698d0363e, type: 3}
-    m_FontSize: 10
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
@@ -702,7 +702,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This bed sheet has multiple _____
+  m_Text: 'Hello
+
+'
 --- !u!222 &1283878658
 CanvasRenderer:
   m_ObjectHideFlags: 0
