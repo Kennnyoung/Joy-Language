@@ -13,18 +13,18 @@ public class EN2CN : MonoBehaviour
     [SerializeField] Button choice4;
     [SerializeField] Text englishShow;
     [SerializeField] Text checkAns;
-    [SerializeField] GameObject LevelDetail;
+    public GameObject LevelDetail;
+    public GameObject currentCanvas;
 
     string correct;
+    int correctTimes;
+    int totalTime = 3;
+    int curTimes = 1;
     UnitSelection allLevel; 
 
     // Start is called before the first frame update
     void Start(){
-        reloadData();
-
-        // get the level detail
-        UnitSelection temp = LevelDetail.GetComponent<UnitSelection>();
-        allLevel = temp;
+        newLevelIn();
 
         choice1.onClick.AddListener(delegate { userPick(choice1); });
         choice2.onClick.AddListener(delegate { userPick(choice2); });
@@ -36,20 +36,27 @@ public class EN2CN : MonoBehaviour
         //print(clicked.GetComponentInChildren<Text>().text);
         string userAns = clicked.GetComponentInChildren<Text>().text;
         if (userAns == correct) {
-            print("Correct!");
             checkAns.text = "Correct";
-
-            //disable for a whihle
-            disableAllButton();
-            //mark the level as we complete
-            allLevel.saveComplete(3);
-            Invoke("resetCheckAns", 0.1f);
+            correctTimes++;
         }
         else {
-            print("False!");
             checkAns.text = "False";
         }
-        //Invoke("reloadScene", 1);
+
+        if(curTimes == totalTime) {
+            checkAns.text = "Finish!";
+
+            //mark the level as we complete
+            allLevel.saveComplete(correctTimes);
+
+            Invoke("goBack2Unit", 0.1f);
+        }
+        else {
+            curTimes++;
+            //disable for a whihle
+            disableAllButton();
+            Invoke("reloadData", 0.1f);
+        }
     }
 
     void printAll(VocabularySheet test) {
@@ -91,20 +98,19 @@ public class EN2CN : MonoBehaviour
             list[idx] = temp;
         }
 
-        for (int i = 0; i < 4; i++) print(list[i]);
+        //for (int i = 0; i < 4; i++) print(list[i]);
         return list;
     }
 
     // to reset the checkAns text box
-    void resetCheckAns() {
-        checkAns.text = "";
-        reloadData();
-    }
-
-    // only for testing
-    //void reloadScene() {
-    //    SceneManager.LoadScene(1);
+    //void resetCheckAns() {
+    //    reloadData();
     //}
+
+    void goBack2Unit() {
+        currentCanvas.SetActive(false);
+        LevelDetail.SetActive(true);
+    }
 
     void disableAllButton() {
         // disable all the button for now
@@ -122,7 +128,24 @@ public class EN2CN : MonoBehaviour
         choice4.interactable = true;
     }
 
+    // this function called when new level is in
+    public void newLevelIn() {
+        // get the level detail
+        UnitSelection temp = LevelDetail.GetComponent<UnitSelection>();
+        allLevel = temp;
+        print(allLevel.currentLevel);
+
+        // reset all count
+        correctTimes = 0;
+        curTimes = 1;
+
+        // now refresh the all data
+        reloadData();
+    }
+
+    // this function called everytime user pick ans
     void reloadData() {
+        // get list
         VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         List<Vocabulary> list = test.GetVList('M', 4);
         //printAll(test);
@@ -134,6 +157,7 @@ public class EN2CN : MonoBehaviour
         correct = list[correctIndex].Spelling;
         // set the EN
         englishShow.text = list[correctIndex].Meaning;
+        checkAns.text = "";
 
         // set the choice
         choice1.GetComponentInChildren<Text>().text = list[rlist[0]].Spelling;
