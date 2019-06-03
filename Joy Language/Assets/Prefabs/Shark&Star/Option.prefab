@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   starTarget: {fileID: 2558472839937777948}
   moveDuration: 0.8
+  feedBackDuration: 1
 --- !u!61 &3835121227269445389
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ public class UIFader : MonoBehaviour
         StartCoroutine(FadeCanvasGroup(uiElement, uiElement.alpha, 0));
     }
 
-    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 1.5f)
+    public IEnumerator FadeCanvasGroup(CanvasGroup cg, float start, float end, float lerpTime = 0.5f)
     {
         float _timeStartedLerping = Time.time;
         float timeSinceStarted = Time.time - _timeStartedLerping;
@@ -45,7 +45,6 @@ public class UIFader : MonoBehaviour
             if (Mathf.Abs(end - 0) < 0.0000001 && Mathf.Abs(cg.alpha - 0) < 0.0000001)
             {
                 FadeOutOver = true;
-
             }
             yield return new WaitForEndOfFrame();
         }

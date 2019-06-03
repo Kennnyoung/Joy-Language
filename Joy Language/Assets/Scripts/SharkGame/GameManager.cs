@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     public string[] answers;
     public Transform[] choicePositions;
 
-    List<Transform> buttons;
+    [SerializeField] List<Transform> buttons;
     List<Transform> targets;
 
     // answerCheck
@@ -44,7 +44,10 @@ public class GameManager : MonoBehaviour
     {
         vManger = vocManager.GetComponent<VocabularyManager>();
         StartCoroutine(StartLevel());
-        GenerateQuestion();
+        // generate first question
+        GetNewQuest();
+        questionFader.FadeIn();
+        GenerateOptions();
     }
 
     // Get New question.
@@ -68,10 +71,14 @@ public class GameManager : MonoBehaviour
         question.text += "\n\n" + new string('_', maxLen);
     }
 
-    void GenerateQuestion()
+    IEnumerator SwitchQuestion()
     {
-        questionFader.FadeIn();
+        buttons.Clear();
+        questionFader.FadeOut();
+        yield return new WaitForSeconds(0.6f);
         GetNewQuest();
+        questionFader.FadeIn();
+        yield return new WaitForSeconds(0.5f);
         GenerateOptions();
     }
 
@@ -112,7 +119,8 @@ public class GameManager : MonoBehaviour
 
     void TestChoice(bool tempTest)
     {
-        vManger.Pass(tempTest);
+        answerCheck = tempTest;
+        vManger.Pass(answerCheck);
 
         for (int i=0; i < buttons.Count; i++)
         {
@@ -133,6 +141,19 @@ public class GameManager : MonoBehaviour
                 Instantiate(optionVanishParticle, button.position, Quaternion.identity);
                 Destroy(button.gameObject);
             }
+        }
+    }
+
+    void AnswerFeedback(float tempDuration)
+    {
+        switch (answerCheck)
+        {
+            case true:
+                print("Right");
+                break;
+            case false:
+                print("Wrong");
+                break;
         }
     }
 }
