@@ -45,7 +45,6 @@ public class UIFader : MonoBehaviour
             if (Mathf.Abs(end - 0) < 0.0000001 && Mathf.Abs(cg.alpha - 0) < 0.0000001)
             {
                 FadeOutOver = true;
-
             }
             yield return new WaitForEndOfFrame();
         }

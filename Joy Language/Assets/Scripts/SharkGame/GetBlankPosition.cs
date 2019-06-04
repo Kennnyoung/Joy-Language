@@ -8,15 +8,16 @@ public class GetBlankPosition : MonoBehaviour
 {
     public Text textComp;
     public Canvas canvas;
-    public float MoveUpScale;
+    public float VerticalOffSet;
+    public float HorizontalOffSet;
 
     public Vector3 GetPos()
     {
         string text = textComp.text;
 
-        int charIndex = text.IndexOf('_') + 1;
+        int charIndex = text.IndexOf('_');
         Vector3 avgPosOne = GetAvgPos(charIndex);
-        charIndex = text.LastIndexOf('_') + 1;
+        charIndex = text.LastIndexOf('_');
         Vector3 avgPosTwo = GetAvgPos(charIndex);
         return GetWorldPos(0.5f * (avgPosOne + avgPosTwo) / canvas.scaleFactor);
     }
@@ -29,7 +30,7 @@ public class GetBlankPosition : MonoBehaviour
         Vector2 extents = textComp.gameObject.GetComponent<RectTransform>().rect.size;
         textGen.Populate(text, textComp.GetGenerationSettings(extents));
 
-        int newLine = text.Substring(0, charIndex).Split('\n').Length - 1;
+        int newLine = text.Substring(0, charIndex).Split('\n').Length - 2;
         int whiteSpace = text.Substring(0, charIndex).Split(' ').Length - 1;
         int indexOfTextQuad = (charIndex * 4) + (newLine * 4) - 4;
         if (indexOfTextQuad < textGen.vertexCount)
@@ -51,9 +52,9 @@ public class GetBlankPosition : MonoBehaviour
     Vector3 GetWorldPos(Vector3 middleUnderScore)
     {
         Vector3 worldPos = textComp.transform.TransformPoint(middleUnderScore);
-        worldPos.y += MoveUpScale;
-        
-        return(worldPos);
+        worldPos.y += VerticalOffSet;
+        worldPos.x += HorizontalOffSet;
+        return (worldPos);
         //new GameObject("point").transform.position = worldPos;
         //Debug.DrawRay(worldPos, Vector3.up, Color.red, 50f);
     }

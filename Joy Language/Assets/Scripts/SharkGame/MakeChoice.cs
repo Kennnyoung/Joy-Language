@@ -11,6 +11,7 @@ public class MakeChoice : MonoBehaviour
 
     public Transform starTarget;
     public float moveDuration;
+    public float feedBackDuration;
     void Awake()
     {
         gameManager = GameObject.Find("GameManager");
@@ -25,10 +26,9 @@ public class MakeChoice : MonoBehaviour
 
     void TestChoice()
     {
-        gameObject.GetComponent<Button>().enabled = false;
         bool test = (gameObject.tag == "Correct Answer") ? true : false;
-        gameManager.SendMessage("TestChoice", test);
         gameObject.tag = "Current Answer";
+        gameManager.SendMessage("TestChoice", test);
         PlayAnimation();
     }
 
@@ -38,9 +38,15 @@ public class MakeChoice : MonoBehaviour
         star.SendMessage("MakeChoice", starTarget);
     }
 
-    void MoveToBlank()
+    IEnumerator ChoiceAnimation()
     {
-            Vector3 aim = blankPosition.GetPos();
-            iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutExpo"));   
+        Vector3 aim = blankPosition.GetPos();
+        iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutExpo"));
+        gameManager.SendMessage("OptionVanish");
+        yield return new WaitForSeconds(moveDuration);
+        gameManager.SendMessage("AnswerFeedback", feedBackDuration);
+        yield return new WaitForSeconds(feedBackDuration);
+        gameManager.SendMessage("SwitchQuestion");
+        Destroy(gameObject);
     }
 }

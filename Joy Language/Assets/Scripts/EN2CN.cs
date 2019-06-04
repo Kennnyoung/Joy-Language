@@ -132,9 +132,7 @@ public class EN2CN : MonoBehaviour
     // this function called everytime user pick ans
     void reloadData() {
         vocabularySheet.sortAllSheet();
-        List<Vocabulary> list = vocabularySheet.GetVList('M', 4);
-        //vocabularySheet.printAll();
-        //test.writeBack();
+        List<Vocabulary> list = vocabularySheet.GetVListL('M', 4);
 
         List<int> rlist = randomizedArr();
         Random rand = new Random();

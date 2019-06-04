@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     public float enterAnimationDuration;
     public Transform star;
     public Transform shark;
+    public Transform optionVanishParticle;
 
+    UIFader questionFader;
     // generate question
     public GameObject vocManager;
     private VocabularyManager vManger;
@@ -25,13 +27,15 @@ public class GameManager : MonoBehaviour
     public string[] answers;
     public Transform[] choicePositions;
 
-    List<Transform> buttons;
+    [SerializeField] List<Transform> buttons;
     List<Transform> targets;
 
     // answerCheck
     bool answerCheck;
     void Awake()
     {
+        questionFader = GetComponent<UIFader>();
+
         targets = new List<Transform>();
         buttons = new List<Transform>();
     }
@@ -40,7 +44,10 @@ public class GameManager : MonoBehaviour
     {
         vManger = vocManager.GetComponent<VocabularyManager>();
         StartCoroutine(StartLevel());
-        GenerateQuestion();
+        // generate first question
+        GetNewQuest();
+        questionFader.FadeIn();
+        GenerateOptions();
     }
 
     // Get New question.
@@ -61,13 +68,17 @@ public class GameManager : MonoBehaviour
                 maxLen = ans.Length;
             }
         }
-
-        question.text += "\n" + new string('_', maxLen);
+        question.text += "\n\n" + new string('_', maxLen);
     }
 
-    void GenerateQuestion()
+    IEnumerator SwitchQuestion()
     {
+        buttons.Clear();
+        questionFader.FadeOut();
+        yield return new WaitForSeconds(0.6f);
         GetNewQuest();
+        questionFader.FadeIn();
+        yield return new WaitForSeconds(0.5f);
         GenerateOptions();
     }
 
@@ -77,6 +88,7 @@ public class GameManager : MonoBehaviour
         shark.SendMessage("Enter", enterAnimationDuration);
         yield return new WaitForSeconds(enterAnimationDuration);
     }
+
     void GenerateOptions()
     {
         // get target positions
@@ -105,16 +117,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator TestChoice(bool tempTest)
+    void TestChoice(bool tempTest)
     {
-        vManger.Pass(tempTest);
+        answerCheck = tempTest;
+        vManger.Pass(answerCheck);
 
-        yield return null;
         for (int i=0; i < buttons.Count; i++)
         {
             Transform button = buttons[i];
+            button.GetComponent<Button>().enabled = false;
             if (button.tag != "Current Answer")
+                button.GetComponent<BoxCollider2D>().enabled = false;
+        }
+    }
+
+    void OptionVanish()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            Transform button = buttons[i];
+            if (button.tag != "Current Answer")
+            {
+                Instantiate(optionVanishParticle, button.position, Quaternion.identity);
                 Destroy(button.gameObject);
+            }
+        }
+    }
+
+    void AnswerFeedback(float tempDuration)
+    {
+        switch (answerCheck)
+        {
+            case true:
+                print("Right");
+                break;
+            case false:
+                print("Wrong");
+                break;
         }
     }
 }
