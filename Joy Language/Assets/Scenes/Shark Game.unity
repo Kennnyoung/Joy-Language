@@ -1239,6 +1239,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 1921520955, guid: f62ae65c934ede44e99abdbd3c2563c3, type: 3}
+      propertyPath: knockBackDelay
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921520955, guid: f62ae65c934ede44e99abdbd3c2563c3, type: 3}
+      propertyPath: knockBackDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921520955, guid: f62ae65c934ede44e99abdbd3c2563c3, type: 3}
+      propertyPath: chasingSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921520955, guid: f62ae65c934ede44e99abdbd3c2563c3, type: 3}
+      propertyPath: verticalOffset
+      value: 3.2
+      objectReference: {fileID: 0}
     - target: {fileID: 1921520956, guid: f62ae65c934ede44e99abdbd3c2563c3, type: 3}
       propertyPath: duration
       value: 0.3
