@@ -16,7 +16,9 @@ public class EN2CN : MonoBehaviour
     public GameObject LevelDetail;
     public GameObject currentCanvas;
 
-    string correct;
+    // get list
+    VocabularySheet vocabularySheet = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
+    Vocabulary correct;
     int correctTimes;
     int totalTime = 3;
     int curTimes = 1;
@@ -25,6 +27,14 @@ public class EN2CN : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         newLevelIn();
+
+        //VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
+        //printAll(test);
+        ////test.writeBack();
+        //List<Vocabulary> list = test.GetVList('M', 4);
+        //print("------Picked Up------");
+        //for (int i = 0; i < list.Count; i++) list[i].PrintV();
+        //print("------Picked end------");
 
         choice1.onClick.AddListener(delegate { userPick(choice1); });
         choice2.onClick.AddListener(delegate { userPick(choice2); });
@@ -35,9 +45,11 @@ public class EN2CN : MonoBehaviour
     void userPick(Button clicked) {
         //print(clicked.GetComponentInChildren<Text>().text);
         string userAns = clicked.GetComponentInChildren<Text>().text;
-        if (userAns == correct) {
+        if (userAns == correct.Spelling) {
             checkAns.text = "Correct";
             correctTimes++;
+            // update proficient
+            correct.depreciateProf();
         }
         else {
             checkAns.text = "False";
@@ -48,6 +60,8 @@ public class EN2CN : MonoBehaviour
 
             //mark the level as we complete
             allLevel.saveComplete(correctTimes);
+            //write back the proficient
+            vocabularySheet.writeBack();
 
             Invoke("goBack2Unit", 0.1f);
         }
@@ -56,30 +70,6 @@ public class EN2CN : MonoBehaviour
             //disable for a whihle
             disableAllButton();
             Invoke("reloadData", 0.1f);
-        }
-    }
-
-    void printAll(VocabularySheet test) {
-        print(test.EasySheet.Count);
-        print(test.MediumSheet.Count);
-        print(test.HardSheet.Count);
-
-        print("------Easy------");
-        foreach (var v in test.EasySheet) {
-            print(v.Key);
-            print(v.Value);
-        }
-
-        print("------Medium------");
-        foreach (var v in test.MediumSheet) {
-            print(v.Key);
-            print(v.Value);
-        }
-
-        print("------Hard------");
-        foreach (var v in test.HardSheet) {
-            print(v.Key);
-            print(v.Value);
         }
     }
 
@@ -101,11 +91,6 @@ public class EN2CN : MonoBehaviour
         //for (int i = 0; i < 4; i++) print(list[i]);
         return list;
     }
-
-    // to reset the checkAns text box
-    //void resetCheckAns() {
-    //    reloadData();
-    //}
 
     void goBack2Unit() {
         currentCanvas.SetActive(false);
@@ -133,28 +118,27 @@ public class EN2CN : MonoBehaviour
         // get the level detail
         UnitSelection temp = LevelDetail.GetComponent<UnitSelection>();
         allLevel = temp;
-        print(allLevel.currentLevel);
+        //print(allLevel.currentLevel);
 
         // reset all count
         correctTimes = 0;
         curTimes = 1;
 
+        vocabularySheet.printAll();
         // now refresh the all data
         reloadData();
     }
 
     // this function called everytime user pick ans
     void reloadData() {
-        // get list
-        VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
-        List<Vocabulary> list = test.GetVList('M', 4);
-        //printAll(test);
+        vocabularySheet.sortAllSheet();
+        List<Vocabulary> list = vocabularySheet.GetVListL('M', 4);
 
         List<int> rlist = randomizedArr();
         Random rand = new Random();
         int correctIndex = rand.Next(3);
         // i will get the correct CN here
-        correct = list[correctIndex].Spelling;
+        correct = list[correctIndex];
         // set the EN
         englishShow.text = list[correctIndex].Meaning;
         checkAns.text = "";
