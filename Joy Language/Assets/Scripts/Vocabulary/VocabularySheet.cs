@@ -118,9 +118,9 @@ public class VocabularySheet
             result[i] = result[idx];
             result[idx] = v;
         }
-        Debug.Log(result[0].Spelling + " " + result[0].Pos);
-        Debug.Log(result[1].Spelling + " " + result[1].Pos);
-        Debug.Log(result[2].Spelling + " " + result[2].Pos);
+        //Debug.Log(result[0].Spelling + " " + result[0].Pos);
+        //Debug.Log(result[1].Spelling + " " + result[1].Pos);
+        //Debug.Log(result[2].Spelling + " " + result[2].Pos);
 
         return result;
     }

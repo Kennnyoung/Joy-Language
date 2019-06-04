@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveBack : MonoBehaviour
 {
+    [SerializeField] ParticleSystem attackParticle;
     Animator starAnimator;
     Vector3 idlePosition;
 
@@ -18,15 +19,25 @@ public class MoveBack : MonoBehaviour
         idlePosition = transform.parent.position;
     }
 
-    void SetBackDuration(float tempDuration)
+    void SetFeedbackDuration(float tempDuration)
     {
         moveDuration = tempDuration;
     }
-    public IEnumerator BackToIdle()
+
+    IEnumerator BackToIdle()
     {
         starAnimator.SetBool("isMakingChoice", false);
         iTween.MoveTo(transform.parent.gameObject, iTween.Hash("position", idlePosition, "time", moveDuration, "easetype", "easeInOutQuad"));
         yield return new WaitForSeconds(moveDuration);
         starAnimator.SetBool("isMoving", false);
+    }
+
+    IEnumerator Attack()
+    {
+        starAnimator.SetBool("isMakingChoice", false);
+        iTween.MoveTo(transform.parent.gameObject, iTween.Hash("position", idlePosition, "time", moveDuration/2, "easetype", "easeInOutQuad"));
+        yield return new WaitForSeconds(moveDuration/2);
+        starAnimator.SetBool("isMoving", false);
+        attackParticle.Play();
     }
 }

@@ -43,7 +43,7 @@ public class MakeChoice : MonoBehaviour
         Vector3 aim = blankPosition.GetPos();
         iTween.MoveTo(gameObject, iTween.Hash("position", aim, "time", moveDuration, "easetype", "easeOutExpo"));
         gameManager.SendMessage("OptionVanish");
-        yield return new WaitForSeconds(moveDuration);
+        //yield return new WaitForSeconds(moveDuration);
         gameManager.SendMessage("AnswerFeedback", feedBackDuration);
         yield return new WaitForSeconds(feedBackDuration);
         gameManager.SendMessage("SwitchQuestion");

@@ -11,7 +11,7 @@ public class Star_MakeChoice : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        transform.GetChild(0).SendMessage("SetBackDuration", backDuration);
+        transform.GetChild(0).SendMessage("SetFeedbackDuration", backDuration);
     }
 
     IEnumerator MakeChoice(Transform tempTarget)

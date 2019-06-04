@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public float enterAnimationDuration;
     public Transform star;
     public Transform shark;
+    public Transform starBody;
     public Transform optionVanishParticle;
 
     UIFader questionFader;
@@ -75,7 +76,7 @@ public class GameManager : MonoBehaviour
     {
         buttons.Clear();
         questionFader.FadeOut();
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.7f);
         GetNewQuest();
         questionFader.FadeIn();
         yield return new WaitForSeconds(0.5f);
@@ -150,9 +151,11 @@ public class GameManager : MonoBehaviour
         {
             case true:
                 print("Right");
+                starBody.SendMessage("Attack");
                 break;
             case false:
                 print("Wrong");
+                starBody.SendMessage("BackToIdle");
                 break;
         }
     }
