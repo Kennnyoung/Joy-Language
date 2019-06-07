@@ -46,13 +46,13 @@ public class GameManager : MonoBehaviour
         vManger = vocManager.GetComponent<VocabularyManager>();
         StartCoroutine(StartLevel());
         // generate first question
-        GetNewQuest();
+        GetNewQuestEtC();
         questionFader.FadeIn();
         GenerateOptions();
     }
 
-    // Get New question.
-    void GetNewQuest()
+    // Get New question (CtE).
+    void GetNewQuestCtE()
     {
         (List<string>, List<string>) quest = vManger.PopQuestionCtE('E');
 
@@ -72,12 +72,32 @@ public class GameManager : MonoBehaviour
         question.text += "\n\n" + new string('_', maxLen);
     }
 
+    void GetNewQuestEtC()
+    {
+        (string, List<List<string>>) quest = vManger.PopQuestionEtC('E');
+
+        question.text = quest.Item1;
+        answers[0] = string.Join(";", quest.Item2[0]);
+        answers[1] = string.Join(";", quest.Item2[1]);
+        answers[2] = string.Join(";", quest.Item2[2]);
+
+        int maxLen = 0;
+        foreach (string ans in answers)
+        {
+            if (ans.Length > maxLen)
+            {
+                maxLen = ans.Length;
+            }
+        }
+        question.text += "\n\n" + new string('_', maxLen);
+    }
+
     IEnumerator SwitchQuestion()
     {
         buttons.Clear();
         questionFader.FadeOut();
         yield return new WaitForSeconds(0.7f);
-        GetNewQuest();
+        GetNewQuestEtC();
         questionFader.FadeIn();
         yield return new WaitForSeconds(0.5f);
         GenerateOptions();
