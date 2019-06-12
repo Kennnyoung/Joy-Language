@@ -27,12 +27,12 @@ public class RandomOrderWord : MonoBehaviour
     List<char> userPickeds = new List<char>();
     List<BottonPos> pickedButtons = new List<BottonPos>();
     int currentPos = 0;
-
     string correctAns;
+    VocabularySheet allWords;
 
     // Start is called before the first frame update
     void Start(){
-        VocabularySheet allWords = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
+        allWords = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
         Vocabulary picked = allWords.GetVList('M', 1)[0];
         correctAns = picked.Spelling;
         picked.PrintV();
@@ -68,23 +68,15 @@ public class RandomOrderWord : MonoBehaviour
         // move the current pos to next _ empty one
         currentPos = userPickeds.IndexOf('_');
 
-
-        //string temp = "";
-        //for (int i = 0; i < userPickeds.Count; i++) temp += "" + userPickeds[i];
-        //print(temp);
-        //print(userPickeds.ToArray().ToString());
-
-        //print(currentLetter.ToCharArray()[0] + " " + currentPos + " " + userPickeds.IndexOf('_'));
-
         // if no empty space means user pick all letters check ans
         if (currentPos == -1) {
             string tempy = "";
             for (int i = 0; i < userPickeds.Count; i++) tempy += "" + userPickeds[i];
             if (tempy == correctAns) {
                 ansCheck.text = "Correct!";
-                Invoke("reloadData", 0.1f);
             }
             else ansCheck.text = "FALSE";
+            Invoke("reloadData", 0.1f);
         }
     }
 
