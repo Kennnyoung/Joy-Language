@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System.Text;
+using System;
 using Newtonsoft.Json;
 using Random = System.Random;
 using UnityEngine;
@@ -80,7 +80,7 @@ public class VocabularySheet {
     }
     // TODO
     static int sortByProfi(Vocabulary v1, Vocabulary v2) {
-        return -1 * v1.Proficient.CompareTo(v2.Proficient);
+        return v1.Proficient.CompareTo(v2.Proficient);
     }
     // TODO
     public void printAll() {
@@ -134,8 +134,8 @@ public class VocabularySheet {
             int index = 0;
             while (curLength < length) {
                 int proba = rand.Next(100);
-                //Debug.Log(index);
-                if (proba < vSheet[index].Proficient) {
+                Debug.Log(proba + " " + vSheet[index].Proficient + " " + vSheet[index].Spelling);
+                if (proba > vSheet[index].Proficient) {
                     curLength++;
                     result.Add(vSheet[index]);
                 }
@@ -157,6 +157,18 @@ public class VocabularySheet {
     //    }
     //    return true;
     //}
+
+    public void resetPro() {
+        string upStr = File.ReadAllText("./Assets/Scripts/Vocabulary/word_test.json");
+        List<Vocabulary> vLst = JsonConvert.DeserializeObject<List<Vocabulary>>(upStr);
+        for(int i = 0; i <vLst.Count; i++) {
+            vLst[i].numberOfCorrect = 7;
+            vLst[i].upProf();
+            vLst[i].lastTimeGetCorrect = new DateTime(1970, 1, 1).Ticks;
+        }
+        string str = JsonConvert.SerializeObject(vLst);
+        File.WriteAllText("./Assets/Scripts/Vocabulary/word_test.json", str);
+    }
 
     public void writeBack() {
         //string upStr = File.ReadAllText("./Assets/Scripts/Vocabulary/word_test.json");

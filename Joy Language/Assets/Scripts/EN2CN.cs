@@ -19,6 +19,7 @@ public class EN2CN : MonoBehaviour
     // get list
     VocabularySheet vocabularySheet = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
     Vocabulary correct;
+    List<Vocabulary> list;
     int correctTimes;
     int totalTime = 3;
     int curTimes = 1;
@@ -26,10 +27,12 @@ public class EN2CN : MonoBehaviour
 
     // Start is called before the first frame update
     void Start(){
+        //vocabularySheet.resetPro();
+        vocabularySheet.printAll();
         newLevelIn();
 
         //VocabularySheet test = new VocabularySheet("./Assets/Scripts/Vocabulary/word_test.json");
-        //printAll(test);
+        //test.printAll();
         ////test.writeBack();
         //List<Vocabulary> list = test.GetVList('M', 4);
         //print("------Picked Up------");
@@ -49,28 +52,33 @@ public class EN2CN : MonoBehaviour
             checkAns.text = "Correct";
             correctTimes++;
             // update proficient
-            correct.depreciateProf();
+            correct.upProf();
         }
         else {
+            // find the wrong one and depreciate
+            find_button_index(list, userAns).depreciateProf();
+
             checkAns.text = "False";
         }
 
-        if(curTimes == totalTime) {
-            checkAns.text = "Finish!";
+        //if(curTimes == totalTime) {
+        //    checkAns.text = "Finish!";
 
-            //mark the level as we complete
-            allLevel.saveComplete(correctTimes);
-            //write back the proficient
-            vocabularySheet.writeBack();
+        //    //mark the level as we complete
+        //    allLevel.saveComplete(correctTimes);
+        //    //write back the proficient
+        //    vocabularySheet.writeBack();
 
-            Invoke("goBack2Unit", 0.1f);
-        }
-        else {
-            curTimes++;
-            //disable for a whihle
-            disableAllButton();
-            Invoke("reloadData", 0.1f);
-        }
+        //    //Invoke("goBack2Unit", 0.1f);
+        //}
+        //else {
+        //    curTimes++;
+        //    //disable for a whihle
+        vocabularySheet.writeBack();
+        disableAllButton();
+        Invoke("reloadData", 0.1f);
+            
+        //}
     }
 
     private List<int> randomizedArr() {
@@ -91,6 +99,22 @@ public class EN2CN : MonoBehaviour
         //for (int i = 0; i < 4; i++) print(list[i]);
         return list;
     }
+
+    Vocabulary find_button_index(List<Vocabulary> arr, string target) {
+        for(int i = 0; i < arr.Count; i++) {
+            string temp = arr[i].Spelling;
+            if (temp == target) return arr[i];
+        }
+        return null;
+    }
+
+    //int `   
+    //    (string clicked) {
+    //    for(int i = 0; i < 4; i++) {
+    //        if (list[i].Spelling == clicked) return i;
+    //    }
+    //    return -1;
+    //}
 
     void goBack2Unit() {
         currentCanvas.SetActive(false);
@@ -124,7 +148,7 @@ public class EN2CN : MonoBehaviour
         correctTimes = 0;
         curTimes = 1;
 
-        vocabularySheet.printAll();
+        //vocabularySheet.printAll();
         // now refresh the all data
         reloadData();
     }
@@ -132,7 +156,7 @@ public class EN2CN : MonoBehaviour
     // this function called everytime user pick ans
     void reloadData() {
         vocabularySheet.sortAllSheet();
-        List<Vocabulary> list = vocabularySheet.GetVListL('M', 4);
+        list = vocabularySheet.GetVListL('M', 4);
 
         List<int> rlist = randomizedArr();
         Random rand = new Random();
