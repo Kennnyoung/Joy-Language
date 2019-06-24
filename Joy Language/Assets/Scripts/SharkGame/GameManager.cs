@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public Transform shark;
     public Transform starBody;
     public Transform optionVanishParticle;
+    public static int NumberOfUnitRecited;
 
     UIFader questionFader;
     // generate question
