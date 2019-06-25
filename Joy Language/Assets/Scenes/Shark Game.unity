@@ -422,6 +422,7 @@ GameObject:
   - component: {fileID: 788454641}
   - component: {fileID: 788454640}
   - component: {fileID: 788454642}
+  - component: {fileID: 788454643}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -447,6 +448,7 @@ MonoBehaviour:
   starBody: {fileID: 463314501}
   optionVanishParticle: {fileID: 7002583528690450755, guid: be140253951437147afac1b8feabcc39,
     type: 3}
+  NumberOfWordPerUnit: 10
   vocManager: {fileID: 2046170204}
   question: {fileID: 1283878657}
   canvas: {fileID: 1329254697}
@@ -490,6 +492,19 @@ MonoBehaviour:
   uiElement: {fileID: 1283878659}
   FadeInOver: 0
   FadeOutOver: 0
+--- !u!114 &788454643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788454639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c05854179f6f27a42aeaf5548603a9bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumberOfItems: 3
 --- !u!1 &790344906
 GameObject:
   m_ObjectHideFlags: 0
