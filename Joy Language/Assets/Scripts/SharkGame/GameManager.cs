@@ -12,7 +12,9 @@ public class GameManager : MonoBehaviour
     public Transform shark;
     public Transform starBody;
     public Transform optionVanishParticle;
-    public static int NumberOfUnitRecited;
+    [SerializeField] int NumberOfWordPerUnit;
+    public static int NumberOfUnitRecited = 0;
+    private static int NumberOfWordRecited = 0;
 
     UIFader questionFader;
     // generate question
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
         vManger = vocManager.GetComponent<VocabularyManager>();
         StartCoroutine(StartLevel());
         // generate first question
-        GetNewQuestEtC();
+        GetNewQuestCtE();
         questionFader.FadeIn();
         GenerateOptions();
     }
@@ -98,7 +100,7 @@ public class GameManager : MonoBehaviour
         buttons.Clear();
         questionFader.FadeOut();
         yield return new WaitForSeconds(0.7f);
-        GetNewQuestEtC();
+        GetNewQuestCtE();
         questionFader.FadeIn();
         yield return new WaitForSeconds(0.5f);
         GenerateOptions();
@@ -168,6 +170,15 @@ public class GameManager : MonoBehaviour
 
     void AnswerFeedback(float tempDuration)
     {
+        NumberOfWordRecited++;
+        if (NumberOfWordRecited == NumberOfWordPerUnit)
+        {
+            NumberOfUnitRecited++;
+            StoryChipCollection scc = gameObject.GetComponent<StoryChipCollection>();
+            (int, int) chip = scc.GetChipIndex();
+            print("chip:" + chip);
+            NumberOfWordRecited = 0;
+        }
         switch (answerCheck)
         {
             case true:
