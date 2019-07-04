@@ -14,7 +14,6 @@ public class Fragments : MonoBehaviour
 
     void Start()
     {
-        image.type = Image.Type.Filled;
         Display();
     }
 
@@ -33,8 +32,8 @@ public class Fragments : MonoBehaviour
         }
     }
 
-    //void Update()
-    //{
-    //    image.fillAmount = (float)currentAmount / amount; 
-    //}
+    void Update()
+    {
+        image.fillAmount = (float)currentAmount / amount;
+    }
 }

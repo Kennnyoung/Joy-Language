@@ -30,7 +30,7 @@ RectTransform:
   m_LocalScale: {x: 1.025, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6830128066819382538}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -186,7 +186,7 @@ RectTransform:
   m_Children:
   - {fileID: 1362065700615878862}
   m_Father: {fileID: 6830128066819382538}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -301,6 +301,7 @@ MonoBehaviour:
   amount: 10
   currentAmount: 0
   image: {fileID: 1362065701003742185}
+  background: {fileID: 0}
   btn: {fileID: 1362065701003742186}
   isCompleted: 0
 --- !u!1 &3918825602770959964
@@ -330,8 +331,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1362065701003742187}
   - {fileID: 1362065700527045161}
+  - {fileID: 1362065701003742187}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
