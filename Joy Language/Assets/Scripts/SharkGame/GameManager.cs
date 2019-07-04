@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int NumberOfWordPerUnit;
     public static int NumberOfUnitRecited = 0;
     private static int NumberOfWordRecited = 0;
+    public static Dictionary<int, List<int>> StoryChips;
+    public static List<int> GameChips;
 
     UIFader questionFader;
     // generate question

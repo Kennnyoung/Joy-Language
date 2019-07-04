@@ -60,6 +60,14 @@ public class StoryChipCollection : MonoBehaviour
                 Chips.Remove(MinItem);
             }
             print("Min Chip");
+            if (GameManager.StoryChips.ContainsKey(MinItem))
+            {
+                GameManager.StoryChips[MinItem].Add(Chip);
+            }
+            else
+            {
+                GameManager.StoryChips[MinItem] = new List<int> { Chip };
+            }
             return (MinItem, Chip);
         }
         //otherwise we random a drop 
@@ -70,6 +78,14 @@ public class StoryChipCollection : MonoBehaviour
             int Chip = Chips[ItemIndex][ChipIndex];
             Chips[ItemIndex].Remove(Chip);
             print("Random chip");
+            if (GameManager.StoryChips.ContainsKey(ItemIndex))
+            {
+                GameManager.StoryChips[ItemIndex].Add(Chip);
+            }
+            else
+            {
+                GameManager.StoryChips[ItemIndex] = new List<int> { Chip };
+            }
             return (ItemIndex, Chip);
         }
     }

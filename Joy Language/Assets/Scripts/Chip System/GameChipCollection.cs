@@ -7,7 +7,6 @@ public class GameChipCollection : MonoBehaviour
     public static int NumberOfChipsCollected;
     public static bool DuplicateDrop;
 
-    private static List<int> ItemsDropped;
     private static List<int> AllItems;
 
 
@@ -25,15 +24,15 @@ public class GameChipCollection : MonoBehaviour
     {
         int ItemIndex = Random.Range(0, AllItems.Count-1);
         int Item = AllItems[ItemIndex];
-        if (ItemsDropped.Contains(Item))
+        if (GameManager.GameChips.Contains(Item))
         {
             NumberOfChipsCollected = (int)Mathf.Ceil(0.5f * NumberOfChipsCollected);
-            //-1 means duplicate drop
             DuplicateDrop = true;
         }
         else
         {
             DuplicateDrop = false;
+            GameManager.GameChips.Add(Item);
         }
 
         return Item;
