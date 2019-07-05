@@ -11,9 +11,11 @@ public class Fragments : MonoBehaviour
     public Image background;
     public Button btn;
     public bool isCompleted;
+    public int CardID;
 
     void Start()
     {
+        currentAmount = 0;
         Display();
     }
 
@@ -34,6 +36,13 @@ public class Fragments : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.StoryChips != null)
+        {
+            if (GameManager.StoryChips.ContainsKey(CardID))
+            {
+                currentAmount = GameManager.StoryChips[CardID].Count;
+            }
+        }
         image.fillAmount = (float)currentAmount / amount;
     }
 }

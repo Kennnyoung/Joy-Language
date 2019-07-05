@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Word Learning Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Shark Game.unity
+    guid: d20a17cc7d2277542be6bda6d8e99bf2
   m_configObjects: {}

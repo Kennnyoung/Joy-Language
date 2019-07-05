@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -15,8 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] int NumberOfWordPerUnit;
     public static int NumberOfUnitRecited = 0;
     private static int NumberOfWordRecited = 0;
-    public static Dictionary<int, List<int>> StoryChips;
-    public static List<int> GameChips;
+    public static Dictionary<int, List<int>> StoryChips = new Dictionary<int, List<int>>();
+    public static List<int> GameChips = new List<int>();
 
     UIFader questionFader;
     // generate question
@@ -192,5 +194,10 @@ public class GameManager : MonoBehaviour
                 starBody.SendMessage("BackToIdle");
                 break;
         }
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }
