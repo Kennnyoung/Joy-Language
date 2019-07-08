@@ -423,9 +423,9 @@ GameObject:
   - component: {fileID: 696755642}
   - component: {fileID: 696755644}
   m_Layer: 0
-  m_Name: Combo Icon
+  m_Name: Combo Display
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -449,6 +449,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e4cbde60e25c0084ca81e1e5cd89e7f3, type: 3}
   - {fileID: 21300000, guid: 8ee7198c46b973b4b91503de5b5de5ea, type: 3}
   - {fileID: 21300000, guid: c847b4aa4ad0a6d468e75cd965c8a259, type: 3}
+  enterPosition: {fileID: 1164702269}
+  moveInDuration: 0.8
+  hoverDuration: 0.3
+  fadeOutDuration: 1
 --- !u!4 &696755643
 Transform:
   m_ObjectHideFlags: 0
@@ -457,11 +461,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 696755641}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0.24, z: 0}
-  m_LocalScale: {x: 0.55308, y: 0.55308, z: 0.55308}
+  m_LocalPosition: {x: 1.87, y: 3.29, z: 0}
+  m_LocalScale: {x: 0.5033028, y: 0.5033028, z: 0.5033028}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &696755644
 SpriteRenderer:
@@ -500,7 +504,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: ea5888513972d024da223ff9bd372765, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 0.94018334, g: 0.9433962, b: 0.28924885, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -508,7 +512,7 @@ SpriteRenderer:
   m_Size: {x: 3.08, y: 1.79}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &788454639
@@ -781,11 +785,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1164702268}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.52, y: 0.17, z: 0}
+  m_LocalPosition: {x: -4.87, y: 3.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283878654
 GameObject:

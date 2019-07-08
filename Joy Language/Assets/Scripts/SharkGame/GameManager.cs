@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Transform shark;
     public Transform starBody;
     public Transform optionVanishParticle;
+    public Transform comboIcon;
     [SerializeField] int NumberOfWordPerUnit;
     public int NumOfQuest;
     public int Rank;
@@ -183,10 +184,9 @@ public class GameManager : MonoBehaviour
         switch (answerCheck)
         {
             case true:
-                print("Right");
                 starBody.SendMessage("Attack");
-
                 NumberOfWordRecited++;
+                comboIcon.SendMessage("DisplayCurrentCombo", NumberOfWordRecited);
                 if (NumberOfWordRecited == NumberOfWordPerUnit)
                 {
                     NumberOfUnitRecited++;
