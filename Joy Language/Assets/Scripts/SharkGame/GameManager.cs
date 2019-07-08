@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public Transform shark;
     public Transform starBody;
     public Transform optionVanishParticle;
-    public Transform comboIcon;
     [SerializeField] int NumberOfWordPerUnit;
     public int NumOfQuest;
     public int Rank;
@@ -188,7 +187,6 @@ public class GameManager : MonoBehaviour
                 starBody.SendMessage("Attack");
 
                 NumberOfWordRecited++;
-
                 if (NumberOfWordRecited == NumberOfWordPerUnit)
                 {
                     NumberOfUnitRecited++;
@@ -208,6 +206,8 @@ public class GameManager : MonoBehaviour
                     print("Your Rank: " + Rank);
 
                     NumberOfWordRecited = 0;
+
+                    SceneManager.LoadScene("Word Learning Scene");
                 }
 
                 break;

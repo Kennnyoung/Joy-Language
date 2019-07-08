@@ -19727,6 +19727,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 77
       objectReference: {fileID: 0}
+    - target: {fileID: 3803865387195836353, guid: b2a8e6ce25528f74fba2c8c321ea6d44,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SceneNavigation
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a8e6ce25528f74fba2c8c321ea6d44, type: 3}
 --- !u!1001 &3039470531966341493

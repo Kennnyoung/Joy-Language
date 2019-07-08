@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CanvasNavigationController : MonoBehaviour
 {
@@ -11,5 +12,10 @@ public class CanvasNavigationController : MonoBehaviour
     {
         CurrentCanvas.SetActive(false);
         TargetCanvas.SetActive(true);
+    }
+
+    public void SceneNavigation()
+    {
+        SceneManager.LoadScene("Shark Game");
     }
 }
