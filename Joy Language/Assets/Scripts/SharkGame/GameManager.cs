@@ -204,7 +204,6 @@ public class GameManager : MonoBehaviour
                         Rank = 1;
                     }
                     print("Your Rank: " + Rank);
-
                     NumberOfWordRecited = 0;
 
                     SceneManager.LoadScene("Word Learning Scene");

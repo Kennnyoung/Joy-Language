@@ -36,7 +36,7 @@ public class UnitSelection : MonoBehaviour
     [SerializeField] Sprite emptyStart;
     [SerializeField] GameObject en2cn;
 
-    List<LevelDetail> allLevel;
+    public static List<LevelDetail> allLevel;
     List<Button> levelButtons = new List<Button>();
     public int currentLevel = 1;
 
