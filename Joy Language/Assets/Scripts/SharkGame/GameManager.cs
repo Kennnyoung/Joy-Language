@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public Transform starBody;
     public Transform optionVanishParticle;
     [SerializeField] int NumberOfWordPerUnit;
+    public int NumOfQuest;
+    public int Rank;
     public static int NumberOfUnitRecited = 0;
     private static int NumberOfWordRecited = 0;
     public static Dictionary<int, List<int>> StoryChips = new Dictionary<int, List<int>>();
@@ -50,6 +52,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        NumOfQuest = 0;
+        Rank = 3;
+
         vManger = vocManager.GetComponent<VocabularyManager>();
         StartCoroutine(StartLevel());
         // generate first question
@@ -174,20 +179,35 @@ public class GameManager : MonoBehaviour
 
     void AnswerFeedback(float tempDuration)
     {
-        NumberOfWordRecited++;
-        if (NumberOfWordRecited == NumberOfWordPerUnit)
-        {
-            NumberOfUnitRecited++;
-            StoryChipCollection scc = gameObject.GetComponent<StoryChipCollection>();
-            (int, int) chip = scc.GetChipIndex();
-            print("chip:" + chip);
-            NumberOfWordRecited = 0;
-        }
+        NumOfQuest++;
         switch (answerCheck)
         {
             case true:
                 print("Right");
                 starBody.SendMessage("Attack");
+
+                NumberOfWordRecited++;
+                if (NumberOfWordRecited == NumberOfWordPerUnit)
+                {
+                    NumberOfUnitRecited++;
+                    StoryChipCollection scc = gameObject.GetComponent<StoryChipCollection>();
+                    (int, int) chip = scc.GetChipIndex();
+                    print("chip:" + chip);
+                    if (NumOfQuest <= NumberOfWordPerUnit + 2)
+                    {
+                        Rank = 3;
+                    } else if (NumOfQuest <= NumberOfWordPerUnit + 5)
+                    {
+                        Rank = 2;
+                    } else
+                    {
+                        Rank = 1;
+                    }
+                    print("Your Rank: " + Rank);
+
+                    NumberOfWordRecited = 0;
+                }
+
                 break;
             case false:
                 print("Wrong");
