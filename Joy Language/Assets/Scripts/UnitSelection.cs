@@ -52,6 +52,8 @@ public class UnitSelection : MonoBehaviour
         //print(levelDetails.Count);
         allLevel = levelDetails;
 
+        updateLevelScore(1, 1);
+
         for (int i = 0; i < levelDetails.Count; i++) {
             // add button
             Button temp = Instantiate(unit) as Button;
@@ -84,6 +86,17 @@ public class UnitSelection : MonoBehaviour
         allLevel[currentLevel-1].complete = completeness;
         string test = JsonConvert.SerializeObject(allLevel);
         rebuildLevel(completeness);
+        File.WriteAllText("./Assets/Scripts/Vocabulary/level_detail.json", test);
+    }
+
+    // give the api to update level complete score base on level number
+    static public void updateLevelScore(int completeness, int level){
+        string upStr = File.ReadAllText("./Assets/Scripts/Vocabulary/level_detail.json", Encoding.GetEncoding("gb2312"));
+        List<LevelDetail> levelDetails = JsonConvert.DeserializeObject<List<LevelDetail>>(upStr);
+
+        // index 0 is level 1
+        levelDetails[level-1].complete = completeness;
+        string test = JsonConvert.SerializeObject(levelDetails);
         File.WriteAllText("./Assets/Scripts/Vocabulary/level_detail.json", test);
     }
 
