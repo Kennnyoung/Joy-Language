@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
                     print("Your Rank: " + Rank);
                     NumberOfWordRecited = 0;
 
-                    SceneManager.LoadScene("Word Learning Scene");
+                    gameObject.SendMessage("FinishUnit");
                 }
 
                 break;
@@ -216,8 +216,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-
-    public void LoadScene()
+    public void BackToLevelSelection()
     {
         SceneManager.LoadScene(1);
     }
