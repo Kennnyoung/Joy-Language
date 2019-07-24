@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     // Get New question (CtE).
     void GetNewQuestCtE()
     {
-        (List<string>, List<string>) quest = vManger.PopQuestionCtE('E');
+        (List<string>, List<string>) quest = vManger.PopQuestionCtE('M');
 
         question.text = string.Join(";", quest.Item1);
         answers[0] = quest.Item2[0];
@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
 
     void GetNewQuestEtC()
     {
-        (string, List<List<string>>) quest = vManger.PopQuestionEtC('E');
+        (string, List<List<string>>) quest = vManger.PopQuestionEtC('M');
 
         question.text = quest.Item1;
         answers[0] = string.Join(";", quest.Item2[0]);
