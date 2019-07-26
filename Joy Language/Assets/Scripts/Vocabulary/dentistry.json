@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "spelling": "incisor",
+    "pos": "n.",
+    "meaning": "门牙",
+    "syllable": "in,ci,sor"
+  },
+  {
+    "id": 2,
+    "spelling": "molar",
+    "pos": "n.",
+    "meaning": "臼齿",
+    "syllable": "mo,lar"
+  },
+  {
+    "id": 3,
+    "spelling": "braces",
+    "pos": "n.",
+    "meaning": "牙箍",
+    "syllable": "bra,ces"
+  },
+  {
+    "id": 4,
+    "spelling": "cavity",
+    "pos": "n.",
+    "meaning": "蛀洞",
+    "syllable": "cav,i,ty"
+  },
+  {
+    "id": 5,
+    "spelling": "crooked",
+    "pos": "adj.",
+    "meaning": "歪斜的，不整齐的",
+    "syllable": "crook,ed"
+  },
+  {
+    "id": 6,
+    "spelling": "enamel",
+    "pos": "n.",
+    "meaning": "牙釉质",
+    "syllable": "e,nam,el"
+  },
+  {
+    "id": 7,
+    "spelling": "dentin",
+    "pos": "n.",
+    "meaning": "牙本质",
+    "syllable": "den,tin"
+  },
+  {
+    "id": 8,
+    "spelling": "plaque",
+    "pos": "n.",
+    "meaning": "牙菌斑",
+    "syllable": "pla,que"
+  },
+  {
+    "id": 9,
+    "spelling": "nenamel",
+    "pos": "n.",
+    "meaning": "珐琅质",
+    "syllable": "ne,na,mel"
+  },
+  {
+    "id": 10,
+    "spelling": "rednes",
+    "pos": "n.",
+    "meaning": "炎症",
+    "syllable": "rednes"
+  }
+]
