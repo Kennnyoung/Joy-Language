@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public Transform starBody;
     public Transform optionVanishParticle;
     public Transform comboIcon;
-    [SerializeField] int NumberOfWordPerUnit;
+    public int NumberOfWordPerUnit;
     public int NumOfQuest;
     public int Rank;
     public static int NumberOfUnitRecited = 0;
@@ -219,5 +219,9 @@ public class GameManager : MonoBehaviour
     public void BackToLevelSelection()
     {
         SceneManager.LoadScene(1);
+    }
+    public void ReloadSharkScene()
+    {
+        SceneManager.LoadScene(2);
     }
 }

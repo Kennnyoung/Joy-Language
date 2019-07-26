@@ -373,7 +373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 83, y: 515}
+  m_AnchoredPosition: {x: 83, y: 389}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &300812005
@@ -1042,6 +1042,7 @@ MonoBehaviour:
   finishPanal: {fileID: 277843307}
   enterPosition: {fileID: 1175481970}
   moveInDuration: 1
+  worldSettlementText: {fileID: 1001371192}
 --- !u!1 &790344906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1362,7 @@ GameObject:
   - component: {fileID: 1001371194}
   - component: {fileID: 1001371193}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SettlementText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2176,6 +2177,7 @@ GameObject:
   - component: {fileID: 1834954802}
   - component: {fileID: 1834954801}
   - component: {fileID: 1834954800}
+  - component: {fileID: 1834954803}
   m_Layer: 5
   m_Name: NextLevel
   m_TagString: Untagged
@@ -2285,6 +2287,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834954798}
   m_CullTransparentMesh: 0
+--- !u!114 &1834954803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834954798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5ea8ed5bed88a49bdf8287fde7812a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 788454640}
 --- !u!4 &1921520957 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9152337963725854522, guid: f62ae65c934ede44e99abdbd3c2563c3,

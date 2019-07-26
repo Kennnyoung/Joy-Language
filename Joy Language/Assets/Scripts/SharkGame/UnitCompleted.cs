@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UnitCompleted : MonoBehaviour
 {
@@ -9,13 +10,16 @@ public class UnitCompleted : MonoBehaviour
     [SerializeField] GameObject finishPanal;
     [SerializeField] Transform enterPosition;
     [SerializeField] float moveInDuration;
-
+    [SerializeField] Transform worldSettlementText;
     Vector3 targetPosition;
+    GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
+        gm = GetComponent<GameManager>();
         targetPosition = finishPanal.transform.position;
         finishPanal.transform.position = enterPosition.position;
+        worldSettlementText.GetComponent<Text>().text = gm.NumberOfWordPerUnit + " Words";
     }
 
     IEnumerator FinishUnit()
