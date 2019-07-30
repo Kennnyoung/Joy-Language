@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "spelling": "decaf",
+    "pos": "n.",
+    "meaning": "脱因咖啡",
+    "syllable": "de,caf"
+  },
+  {
+    "id": 2,
+    "spelling": "espresso",
+    "pos": "n.",
+    "meaning": "意式浓缩咖啡",
+    "syllable": "es,pres,so"
+  },
+  {
+    "id": 3,
+    "spelling": "americano",
+    "pos": "n.",
+    "meaning": "美式咖啡",
+    "syllable": "a,mer,i,can,o"
+  },
+  {
+    "id": 4,
+    "spelling": "macchiato",
+    "pos": "n.",
+    "meaning": "玛奇朵",
+    "syllable": "mac,chi,a,to"
+  },
+  {
+    "id": 5,
+    "spelling": "cappuccino",
+    "pos": "n.",
+    "meaning": "卡布奇诺",
+    "syllable": "cap,puc,ci,no"
+  },
+  {
+    "id": 6,
+    "spelling": "latte",
+    "pos": "n.",
+    "meaning": "拿铁",
+    "syllable": "lat,te"
+  },
+  {
+    "id": 7,
+    "spelling": "frappe",
+    "pos": "n.",
+    "meaning": "冰咖啡",
+    "syllable": "frap,pe"
+  },
+  {
+    "id": 8,
+    "spelling": "mocha",
+    "pos": "n.",
+    "meaning": "摩卡",
+    "syllable": "mo,cha"
+  },
+  {
+    "id": 9,
+    "spelling": "steamer",
+    "pos": "n.",
+    "meaning": "带泡沫的热牛奶",
+    "syllable": "steam,er"
+  },
+  {
+    "id": 10,
+    "spelling": "caramel",
+    "pos": "n.",
+    "meaning": "焦糖",
+    "syllable": "car,a,mel"
+  }
+]
