@@ -49,7 +49,7 @@ public class UnitSelection : MonoBehaviour
 
         upStr = File.ReadAllText("./Assets/Scripts/Vocabulary/level_detail.json", Encoding.GetEncoding("gb2312"));
         List<LevelDetail> levelDetails = JsonConvert.DeserializeObject<List<LevelDetail>>(upStr);
-        //print(levelDetails.Count);
+        print(levelDetails);
         allLevel = levelDetails;
 
         updateLevelScore(1, 1);
