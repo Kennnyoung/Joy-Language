@@ -13,7 +13,7 @@ public class VocabularyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        vSheet = new VocabularySheet("./Assets/Scripts/Vocabulary/dentistry.json");
+        vSheet = new VocabularySheet("./Assets/Scripts/Vocabulary/cafe.json");
         combo = 0;
     }
 
