@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     public static Dictionary<int, List<int>> StoryChips = new Dictionary<int, List<int>>();
     public static List<int> GameChips = new List<int>();
 
+    // audio
+    AudioSource audioSource;
+    public AudioClip[] rightWrongAudioClips;
+
     UIFader questionFader;
     // generate question
     public GameObject vocManager;
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour
     bool answerCheck;
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         questionFader = GetComponent<UIFader>();
 
         targets = new List<Transform>();
@@ -185,6 +190,7 @@ public class GameManager : MonoBehaviour
         {
             case true:
                 starBody.SendMessage("Attack");
+                audioSource.PlayOneShot(rightWrongAudioClips[0],0.7f);
                 NumberOfWordRecited++;
                 comboIcon.SendMessage("DisplayCurrentCombo", NumberOfWordRecited);
                 if (NumberOfWordRecited == NumberOfWordPerUnit)
@@ -208,11 +214,10 @@ public class GameManager : MonoBehaviour
 
                     gameObject.SendMessage("FinishUnit");
                 }
-
                 break;
             case false:
-                print("Wrong");
                 starBody.SendMessage("BackToIdle");
+                audioSource.PlayOneShot(rightWrongAudioClips[1], 0.7f);
                 break;
         }
     }
