@@ -37,19 +37,25 @@ public class UnitSelection : MonoBehaviour
     [SerializeField] GameObject en2cn;
 
     public static List<LevelDetail> allLevel;
-    List<Button> levelButtons = new List<Button>();
+    [SerializeField] List<Button> levelButtons = new List<Button>();
     public int currentLevel = 1;
 
-    // Start is called before the first frame update
-    void Start(){
-        print("Unit Seletion");
+    // animation
+    [SerializeField] float interval;
+    [SerializeField] float duration;
+    [SerializeField] float acceleration;
+    [SerializeField] float minDuration;
+    // audio
+    AudioSource audio;
+    [SerializeField] AudioClip bubble;
+    void Awake(){
+        audio = GetComponent<AudioSource>();
         string upStr = File.ReadAllText("./Assets/Scripts/Vocabulary/list_count.json", Encoding.GetEncoding("gb2312"));
         ListCount count = JsonConvert.DeserializeObject<ListCount>(upStr);
         //print(count.medium);
 
         upStr = File.ReadAllText("./Assets/Scripts/Vocabulary/level_detail.json", Encoding.GetEncoding("gb2312"));
         List<LevelDetail> levelDetails = JsonConvert.DeserializeObject<List<LevelDetail>>(upStr);
-        print(levelDetails);
         allLevel = levelDetails;
 
         updateLevelScore(1, 1);
@@ -72,7 +78,6 @@ public class UnitSelection : MonoBehaviour
                 else start.GetComponent<Image>().sprite = emptyStart;
             }
         }
-        
     }
 
     // store the current level user pick
@@ -109,10 +114,34 @@ public class UnitSelection : MonoBehaviour
             else start.GetComponent<Image>().sprite = emptyStart;
         }
     }
-    
-    // Update is called once per frame
-    void Update()
+
+
+    // Animations
+    private void OnEnable()
     {
-        
+        StartCoroutine(EnableAnimation());
+    }
+
+    IEnumerator EnableAnimation()
+    {
+        float tempDuration = duration;
+        for (int i = 0; i < levelButtons.Count; i++)
+        {
+            yield return new WaitForSeconds(interval);
+            
+            iTween.ScaleTo(levelButtons[i].gameObject, iTween.Hash("scale", new Vector3(1,1,1), "time", tempDuration, "easetype", "easeInOutBounce"));
+            audio.PlayOneShot(bubble, 0.8f);
+            tempDuration -= acceleration;
+            tempDuration = tempDuration > minDuration ? tempDuration : minDuration;
+            yield return new WaitForSeconds(tempDuration);
+        }
+    }
+
+    private void OnDisable()
+    {
+        for (int i = 0; i < levelButtons.Count; i++)
+        {
+            iTween.ScaleTo(levelButtons[i].gameObject, new Vector3(0, 0, 0), .01f);
+        }
     }
 }

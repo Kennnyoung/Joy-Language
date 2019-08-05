@@ -18,6 +18,5 @@ public class TimeManager : MonoBehaviour
     // For test purpose.
     public void Start()
     {
-        SlowDown();
     }
 }
